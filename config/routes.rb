@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
     resources :wishes, only: [:create, :edit, :update, :destroy]
   end
+
+  root "homes#home"
+  get '/about'=> 'homes#about', as: :about
+  get '/faq'=> 'homes#faq', as: :faq
 end

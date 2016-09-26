@@ -32,6 +32,7 @@ gem 'hirb'
 gem 'faker'
 gem 'pry'
 gem 'cowsay'
+gem 'bootstrap-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

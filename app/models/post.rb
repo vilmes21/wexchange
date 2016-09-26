@@ -1,6 +1,5 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :category
   has_many :taggings, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :comments, dependent: :destroy
