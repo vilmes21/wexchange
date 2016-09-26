@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :wishes, only: [:create, :edit, :update, :destroy]
   end
 
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   root "homes#home"
   get '/about'=> 'homes#about', as: :about
   get '/faq'=> 'homes#faq', as: :faq

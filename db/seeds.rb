@@ -9,3 +9,14 @@
 # Seeding Tag
 # les_tags = ["Like New", "Slightly Used", "Moderately Used", "Kids", "Bikes", "Books", "Household", "Furniture", "Phones", "Clothes", "Computers", "Electronics", "Music Instruments", "Appliances", "Food", "Other", "Finance", "Office", "Engineering", "Art/Media/Design", "Science", "Business", "Education", "Tutoring", "General", "Sports", "Legal", "Health", "Gardening", "Tech", "Writing", "Language", "Nonprofit"]
 # les_tags.each {|tag| Tag.create({name: tag})}
+
+# Seeding Post
+# 30.times do
+#   Post.create({title: Faker::Pokemon.name,
+#   description: Faker::Lorem.sentence,
+#   value: rand(55),
+#   user_id: (rand(9)+1),
+#   location: Faker::Address.street_address,
+#   duration: rand(6),
+#   category: ['Item', 'Service'].sample})
+# end
