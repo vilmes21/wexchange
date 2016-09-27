@@ -2,8 +2,9 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
-    @posts_service = Post.where(category: 'Service').order(created_at: :desc)
+    # @posts = Post.all
+    @service_posts = Post.where(category: 'Service').order(created_at: :desc)
+    @item_posts = Post.where(category: 'Item').order(created_at: :desc)
   end
 
   def show

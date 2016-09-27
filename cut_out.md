@@ -66,3 +66,50 @@ while @posts_service is defined as:
 ```ruby
 @posts_service = Post.where(category: 'Service').order(created_at: :desc)
 ```
+================================
+Autoly generated from `index.htm.erb` of posts:
+```html
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Value</th>
+      <th>User</th>
+      <th>Location</th>
+      <th>Exchanged post</th>
+      <th>Duration</th>
+      <th>Time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.description %></td>
+        <td><%= post.category %></td>
+        <td><%= post.value %></td>
+        <td><%= post.user.name %></td>
+        <td><%= post.location %></td>
+        <td><%= post.exchanged_post_id %></td>
+        <td><%= post.duration %></td>
+        <td><%= post.time %></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>
+```
