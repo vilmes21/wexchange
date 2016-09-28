@@ -113,3 +113,24 @@ Autoly generated from `index.htm.erb` of posts:
 
 <%= link_to 'New Post', new_post_path %>
 ```
+
+==================================
+Maybe will use for request creating form in post show:
+```html
+<h2>Make an Exchange Request!</h2>
+<%= form_tag post_requests_path(@post) do %>
+<div class="form-group">
+  <%= label_tag 'Title' %>
+  <%= text_field_tag :title, nil, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= label_tag 'Your item offer' %>
+  <%= text_field_tag :offer, nil, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= label_tag 'Write a message' %>
+  <%= text_area_tag :message, nil, class: 'form-control'  %>
+</div>
+  <button type="submit" class="btn btn-default">Send Request</button>
+<% end %>
+```

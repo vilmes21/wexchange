@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @request = Request.new
   end
 
   def new
@@ -59,6 +60,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :category, :value, :user_id, :location, :exchanged_post_id, :duration, :time)
+      params.require(:post).permit(:title, :description, :category, :value, :user_id, :location, :exchanged_post_id, :duration, :time, {tag_ids: []})
     end
 end

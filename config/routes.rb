@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :posts do
     resources :likes, only: [:create, :destroy]
-    resources :requests, only: [:create, :destroy]
+    resources :requests, only: [:create, :index, :destroy]
     resources :comments, only: [:create, :edit, :update, :destroy]
     resources :watches, only: [:create, :destroy]
   end

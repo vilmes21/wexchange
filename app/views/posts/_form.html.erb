@@ -13,6 +13,12 @@
 
   <%= f.input :category, label: "Select Category" %>
   <%= f.input :title %>
+  <div class="form-group">
+    <b>Select tags that apply</b>
+    <%= f.collection_select(:tag_ids, Tag.all, :id, :name,
+    {},
+    { multiple: true, class: 'form-control' }) %>
+  </div>
   <%= f.input :description %>
   <%= f.input :value, label: "Points Worth" %>
   <%= f.input :location, label: "Address (VIC: add same-address option)" %>
