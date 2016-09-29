@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :posts do
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy], shallow: true
     resources :requests, only: [:create, :index, :destroy]
     resources :comments, only: [:create, :edit, :update, :destroy]
-    resources :watches, only: [:create, :destroy]
+    resources :watches, only: [:create, :index, :destroy], shallow: true
   end
 
   resources :users, only: [:new, :create]  do

@@ -11,4 +11,21 @@ class Post < ApplicationRecord
   # validates :title
   # validates :value, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   # validates :location
+
+  def watch_of(user)
+    watches.find_by_user_id user
+  end
+
+  def watched_by?(user)
+    watch_of(user).present?
+  end
+
+  def like_of(user)
+    likes.find_by_user_id user
+  end
+
+  def liked_by?(user)
+    like_of(user).present?
+  end
+
 end

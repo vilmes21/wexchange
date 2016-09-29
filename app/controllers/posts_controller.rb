@@ -8,6 +8,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @number_watched = current_user.watched_posts.count
+    @watcher_number = Watch.where(post_id: @post.id).count
+    @likes_number = Like.where(post_id: @post.id).count
     @request = Request.new
     @bigarray = []
     current_user.posts.each do |p|
