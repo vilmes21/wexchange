@@ -2,7 +2,6 @@ class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
 
   def index
-    # @requests = Request.all
     @requests = Request.where(post_id: params[:post_id])
   end
 
@@ -18,18 +17,15 @@ class RequestsController < ApplicationController
     @request.user = current_user
     @request.post = Post.find params[:post_id]
       if @request.save
-        redirect_to root_path, notice: 'Request Successful!'
+        redirect_to post_path(@request.post), notice: 'Request Successful!'
       else
-        render 'post/show', alert: 'Request failure'
+        redirect_to post_path(@request.post), alert: 'Request failure'
       end
   end
 
   def destroy
     @request.destroy
-    respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Message destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to post_path(@request.post), notice: 'Message destroyed.'
   end
 
   private

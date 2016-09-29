@@ -2,9 +2,12 @@ all the requests. (il faut be all requests of THIS post.)
 
 <ul class="list-group">
   <% @requests.each do |r| %>
-  <li class="list-group-item">    <%= r.title %> <br>
-      <%= r.offer %> <br>
-      <%= r.message %><br>
-      all for post with id: <%= r.post_id %> <br></li>
+  <li class="list-group-item">
+    title: <%= r.title %> <br>
+    offer: <%= r.offer %> <br>
+    message: <%= r.message %><br>
+    all for post with id: <%= r.post_id %> <br>
+    <%= link_to "delete XXXXX", post_request_path(r.post_id, r), method: :delete %>
+  </li>
   <% end %>
 </ul>

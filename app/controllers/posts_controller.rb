@@ -9,6 +9,12 @@ class PostsController < ApplicationController
 
   def show
     @request = Request.new
+    @bigarray = []
+    current_user.posts.each do |p|
+      smallarray = []
+      2.times {smallarray << p.title}
+      @bigarray << smallarray
+    end
   end
 
   def new

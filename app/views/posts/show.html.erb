@@ -62,7 +62,8 @@
   <% end %>
 
     <%= f.input :title %>
-    <%= f.input :offer %>
+    <b>Offer one of your items in exchange:</b>
+    <%= f.select :offer, @bigarray, label: "feixue" %>
     <%= f.input :message %>
     <%= f.button :submit, value: "Send Request!", class: "btn btn-primary"%>
 <% end %>
