@@ -31,8 +31,8 @@
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @post.category %>
+  <strong>type:</strong>
+  <%= @post.type %>
 </p>
 
 <p>
@@ -83,28 +83,3 @@
     <%= @likes_number %> likes
   <% end %>
 </div>
-
-<% if user_signed_in? %>
-  <h2>Like it? Request an Exchange!</h2>
-  <%= simple_form_for([@post, @request]) do |f| %>
-    <% if @request.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@request.errors.count, "error") %> prohibited this exchange request from being saved:</h2>
-
-        <ul>
-        <% @request.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-      <%= f.input :title %>
-      <b>Offer one of your items in exchange:</b>
-      <%= f.select :offer, @bigarray, label: "feixue" %>
-      <%= f.input :message %>
-      <%= f.button :submit, value: "Send Request!", class: "btn btn-primary"%>
-  <% end %>
-
-  <%= link_to "All requests(test) of this post", post_requests_path(@post) %>
-<% end %>

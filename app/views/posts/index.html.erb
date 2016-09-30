@@ -6,7 +6,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Category</th>
+      <th>Type</th>
       <th>Value</th>
       <th>User</th>
       <th>Location</th>
@@ -15,17 +15,17 @@
   </thead>
 
   <tbody>
-    <% @service_posts.each do |post| %>
+    <% @services.each do |post| %>
       <tr>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
-        <td><%= post.category %></td>
+        <td><%= post.type %></td>
         <td><%= post.value %></td>
         <td><%= post.user.name %></td>
         <td><%= post.location %></td>
-        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Show', post_path(post) %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,7 +37,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
-      <th>Category</th>
+      <th>Type</th>
       <th>Value</th>
       <th>User</th>
       <th>Location</th>
@@ -48,19 +48,19 @@
   </thead>
 
   <tbody>
-    <% @item_posts.each do |post| %>
+    <% @items.each do |post| %>
     <tr>
       <td><%= post.title %></td>
       <td><%= post.description %></td>
-      <td><%= post.category %></td>
+      <td><%= post.type %></td>
       <td><%= post.value %></td>
       <td><%= post.user.name %></td>
       <td><%= post.location %></td>
       <td><%= post.duration %></td>
       <td><%= post.time %></td>
-      <td><%= link_to 'Show', post %></td>
-      <td><%= link_to 'Edit', edit_post_path(post) %></td>
-      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%#= link_to 'Show', post %></td>
+      <td><%#= link_to 'Edit', edit_post_path(post) %></td>
+      <td><%#= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>
   </tbody>

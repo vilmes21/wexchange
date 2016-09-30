@@ -20,3 +20,9 @@
 #   duration: rand(6),
 #   category: ['Item', 'Service'].sample})
 # end
+
+#after setting up STI
+# Post.find_each do |x|
+#  x.type = ["Item", "Service", "Volunteer"].sample
+#  x.save
+# end

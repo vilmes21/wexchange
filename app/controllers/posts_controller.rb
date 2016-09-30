@@ -3,8 +3,11 @@ class PostsController < ApplicationController
 
   def index
     # @posts = Post.all
-    @service_posts = Post.where(category: 'Service').order(created_at: :desc)
-    @item_posts = Post.where(category: 'Item').order(created_at: :desc)
+    # @service_posts = Post.where(type: 'Service').order(created_at: :desc)
+    # @item_posts = Post.where(type: 'Item').order(created_at: :desc)
+    @services = Service.order(created_at: :desc)
+    @items = Item.order(created_at: :desc)
+    @Volunteers = Volunteer.order(created_at: :desc)
   end
 
   def show
@@ -31,15 +34,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to post_path(@post), notice: 'Post was successfully created.'
+    else
+      render :new, alert: "Failed to create post"
     end
   end
 
@@ -69,6 +67,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :category, :value, :user_id, :location, :exchanged_post_id, :duration, :time, {tag_ids: []})
+      params.require(:post).permit(:title, :description, :type, :value, :user_id, :location, :exchanged_post_id, :duration, :time, {tag_ids: []})
     end
 end
