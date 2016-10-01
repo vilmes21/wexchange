@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resources :watches, only: [:create, :index, :destroy], shallow: true
   end
 
+  resources :services, controller: :posts
+  resources :items, controller: :posts
+  resources :volunteers, controller: :posts
+
   resources :users, only: [:new, :create]  do
     resources :reviews, only: [:create, :destroy]
     resources :wishes, only: [:create, :edit, :update, :destroy]
