@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     # @posts = Post.all
     @service_posts = Post.where(category: 'Service').order(created_at: :desc)
     @item_posts = Post.where(category: 'Item').order(created_at: :desc)
+    @volunteer_posts = Post.where(category: 'Volunteer').order(created_at: :desc)
   end
 
   def show

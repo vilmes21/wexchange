@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :reviewers, through: :reviews, source: :user
   has_many :wishes, dependent: :destroy
+  has_many :desired_tags, through: :wishes, source: :tag
   has_many :requests, dependent: :destroy
   has_many :requested_posts, through: :requests, source: :post
   has_many :posts, dependent: :destroy

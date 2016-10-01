@@ -54,7 +54,12 @@
             <li><a href=<%= new_user_path %>>Register</a></li>
             <li><a href=<%= new_session_path %>>Login</a></li>
             <li>Hi, <%= session[:user_name] || "how are you today?" %></li>
+
+            <% if user_signed_in? %>
+            <li><%= link_to "User Panel", user_path(session[:user_id]) %></li>
             <li><%= link_to "Logout", sessions_path, method: :delete %></li>
+            <% end %>
+
             <li><%= link_to "Create Post", new_post_path %></li>
             <li><%= link_to "All Posts", posts_path %></li>
             <li class="dropdown">

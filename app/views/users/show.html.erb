@@ -1,5 +1,60 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to messages_path do %>
+  <button>
+    Message Box
+  </button>
+<% end %>
+
+<%= link_to watches_path do %>
+  <div class="btn btn-default">
+    Watched (<%= @number_watched %>)
+  </div>
+<% end %>
+
+<%= link_to user_requests_path do %>
+  <div class="btn btn-default">
+    Sent Requests (<%= @number_sent %>)
+  </div>
+<% end %>
+
+<div class="well well-lg">
+  Your Current Posts:
+  <% current_user.posts.each do |p| %>
+    <%= link_to post_path(p) do%>
+    <div class="well well-sm">
+      Title: <%= p.title %> |
+      category: <%= p.category %>
+    </div>
+    <% end %>
+  <% end %>
+
+</div>
+
+<div class="well well-lg">
+  Suggested Exchanges are here
+</div>
+
+<div class="well well-lg">
+  Exchanges in Progress
+</div>
+
+<div class="well well-lg">
+  Exchange History
+</div>
+
+<p>
+  Joined Since: <%= @user.created_at %>
+</p>
+
+<p>
+  Points: <%= @user.points %>
+</p>
+
+<p>
+  xxx of Exchanges Completed
+</p>
+
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -31,4 +86,3 @@
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>

@@ -1,0 +1,13 @@
+all the msg are here.
+
+<% @posts.each do |p| %>
+  <% p.requests.each do |pr| %>
+    <%= link_to request_path(pr) do %>
+      <div class="well well-sm">
+        <%= pr.title %> | from user <%= pr.user.name %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+hi
