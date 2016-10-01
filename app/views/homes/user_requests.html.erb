@@ -1,0 +1,11 @@
+we're in homes/user_requests.html.erb
+
+You've sent out the following <%= @number_sent %> requests to other users:
+
+<% @user_requests.each do |ur| %>
+  <%= link_to request_path(ur) do %>
+  <div class="well well-sm">
+    <%= ur.title %> | to
+  </div>
+  <% end %>
+<% end %>

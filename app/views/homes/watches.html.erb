@@ -1,0 +1,9 @@
+we're inside /homes/watches.html.erb
+<h2>You are watching these <%= @number_watched %> posts:</h2>
+<% @watched_posts.each do |w| %>
+  <%= link_to post_path(w) do %>
+    <div class="well well-sm">
+      <%= w.title %>
+    </div>
+  <% end %>
+<% end %>

@@ -34,7 +34,7 @@ gem 'pry'
 gem 'cowsay'
 gem 'bootstrap-sass'
 gem 'simple_form'
-
+gem 'rails-erd'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

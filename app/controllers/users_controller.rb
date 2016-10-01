@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @number_watched = current_user.watched_posts.count
+    @number_sent = Request.where(user_id: session[:user_id]).count
   end
 
   def new
