@@ -6,6 +6,15 @@ class PostsController < ApplicationController
     @service_posts = Post.where(category: 'Service').order(created_at: :desc)
     @item_posts = Post.where(category: 'Item').order(created_at: :desc)
     @volunteer_posts = Post.where(category: 'Volunteer').order(created_at: :desc)
+
+    if params[:search]
+      @service_posts = @service_posts.search(params[:search]).order(created_at: :desc)
+      @item_posts = @item_posts.search(params[:search]).order(created_at: :desc)
+      @item_posts = @item_posts.search(params[:search]).order(created_at: :desc)
+      @volunteer_posts = @volunteer_posts.search(params[:search]).order(created_at: :desc)
+      @did_search = true
+    end
+
   end
 
   def show
