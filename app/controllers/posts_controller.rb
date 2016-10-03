@@ -25,7 +25,9 @@ class PostsController < ApplicationController
     @bigarray = []
     current_user.posts.each do |p|
       smallarray = []
-      2.times {smallarray << p.title}
+      # 2.times {smallarray << p.title}
+      smallarray << p.title
+      smallarray << p.id
       @bigarray << smallarray
     end
   end
