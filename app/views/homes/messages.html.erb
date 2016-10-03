@@ -1,10 +1,15 @@
-all the msg are here.
+all the msg are here. we're in `messages.html.erb`
 
 <% @posts.each do |p| %>
   <% p.requests.each do |pr| %>
     <%= link_to request_path(pr) do %>
       <div class="well well-sm">
-        <%= pr.title %> | from user <%= pr.user.name %>
+        <%= pr.title %> | from user <%= pr.user.name %> | status of this request: <%= pr.status %>
+        <div>
+          <% if p.status == "Available" %>
+            <%= link_to "Accept", owner_confirm_path(p, pr) %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>

@@ -5,7 +5,7 @@ You've sent out the following <%= @number_sent %> requests to other users:
 <% @user_requests.each do |ur| %>
   <%= link_to request_path(ur) do %>
   <div class="well well-sm">
-    <%= ur.title %> | to
+    <%= ur.title %> | to BLAH | status of your request: <%= ur.status %>
   </div>
   <% end %>
 <% end %>

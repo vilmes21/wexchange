@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @number_watched = current_user.watched_posts.count
     @number_sent = Request.where(user_id: session[:user_id]).count
+    @exchanging_posts = current_user.posts.where(status: "Exchanging")
   end
 
   def new
