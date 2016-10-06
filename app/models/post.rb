@@ -28,10 +28,16 @@ class Post < ApplicationRecord
     like_of(user).present?
   end
 
-  def self.search(x)
-    where("title ILIKE ?", "%#{x}%") ||
-    where("description ILIKE ?", "%#{x}%") ||
-    where("category ILIKE ?", "%#{x}%")
+  # def self.search(x)
+  #   where("title ILIKE ?", "%#{x}%") ||
+  #   where("description ILIKE ?", "%#{x}%") ||
+  #   where("category ILIKE ?", "%#{x}%")
+  # end
+  def self.search(words)
+    scope = Post.all
+    words.gsub(",", " ").squeeze(" ").split(" ").each do |word|
+      scope = scope.where("title ILIKE :word OR description ILIKE :word OR category ILIKE :word", word: "%#{word}%")
+    end
+    scope
   end
-
 end
