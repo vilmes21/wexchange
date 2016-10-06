@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @request.user = current_user
-    @request.status = "Pending"
+    # @request.status = "Pending"
     @request.post = Post.find params[:post_id]
       if @request.save
         redirect_to post_path(@request.post), notice: 'Request Successful!'

@@ -4,9 +4,10 @@ all the msg are here. we're in `messages.html.erb`
   <% p.requests.each do |pr| %>
     <%= link_to request_path(pr) do %>
       <div class="well well-sm">
-        <%= pr.title %> | from user <%= pr.user.name %> | status of this request: <%= pr.status %>
+        <%= pr.title %> | from user <%= pr.user.name %> | state of this request: <%= pr.state %>
         <div>
-          <% if p.status == "Available" %>
+          <%# if p.state == "Available" %>
+          <% if p.may_exchanging? %>
             <%= link_to "Accept", owner_confirm_path(p, pr) %>
           <% end %>
         </div>

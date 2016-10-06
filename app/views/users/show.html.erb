@@ -50,14 +50,22 @@
 
 <div class="well well-lg">
   Exchanges in Progress <br>
-  <% if @exchanging_posts.present? %>
-    <% @exchanging_posts.each do |ep| %>
+  <%# if @exchanging_posts.present? %>
+    <%# @exchanging_posts.each do |ep| %>
+      <!-- Title: <%#= ep.title %> <br>
+      trading with request number: <%#= ep.working_request_id %> <br> -->
+    <%# end %>
+  <%# else %>
+    <!-- No currently happening exchanges. -->
+  <%# end %>
+
+  <% current_user.posts.each do |ep| %>
+    <% if ep.may_finish? %>
       Title: <%= ep.title %> <br>
       trading with request number: <%= ep.working_request_id %> <br>
     <% end %>
-  <% else %>
-    No currently happening exchanges.
   <% end %>
+
 </div>
 
 <div class="well well-lg">
