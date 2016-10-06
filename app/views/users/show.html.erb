@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="well"> You want these kinds of items:
+  <% @user.desired_tags.each do |p| %>
+    <%= p.name %> |
+  <% end %>
+</div>
+
 <%= link_to messages_path do %>
   <button>
     Message Box
@@ -32,11 +38,26 @@
 </div>
 
 <div class="well well-lg">
-  Suggested Exchanges are here
+  There are <%= suggestions.count %> suggested Exchanges for you:
+  <div>
+    <% suggestions.each do |p| %>
+      <%= link_to post_path(p) do %>
+        <%= p.title %> <br>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <div class="well well-lg">
-  Exchanges in Progress
+  Exchanges in Progress <br>
+  <% if @exchanging_posts.present? %>
+    <% @exchanging_posts.each do |ep| %>
+      Title: <%= ep.title %> <br>
+      trading with request number: <%= ep.working_request_id %> <br>
+    <% end %>
+  <% else %>
+    No currently happening exchanges.
+  <% end %>
 </div>
 
 <div class="well well-lg">

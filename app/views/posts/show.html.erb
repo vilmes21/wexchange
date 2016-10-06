@@ -14,6 +14,12 @@
     <%= link_to watches_path, class: "btn btn-default" do %>
      Your Watched Posts (<%= @number_watched %>)
     <% end %>
+
+    <div class="well"> (VIC: THIS PART CAN BE REMOVED FROM THIS POST SHOW PAGE. WE REALLY ONLY NEED IT FOR USER PANEL PAGE) <br>You want these kinds of items:
+      <% current_user.desired_tags.each do |p| %>
+        <%= p.name %> |
+      <% end %>
+    </div>
   <% end %>
 
 <p>
@@ -23,6 +29,12 @@
 
 <div class="well well-sm">
   <%= @watcher_number %> watching
+</div>
+
+<div class="well"> This post has these tags:
+  <% @post.tags.each do |p| %>
+    <%= p.name %> |
+  <% end %>
 </div>
 
 <p>
@@ -51,8 +63,8 @@
 </p>
 
 <p>
-  <strong>Exchanged post:</strong>
-  <%= @post.exchanged_post_id %>
+  <strong>Exchanging with:</strong>
+  <%= @post.working_request_id %>
 </p>
 
 <p>

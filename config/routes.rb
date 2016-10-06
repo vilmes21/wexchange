@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get '/watches' => 'homes#watches', as: :watches
   get '/requests/:id' => 'requests#show', as: :request
   get '/user_requests' => 'homes#user_requests', as: :user_requests
+  get '/:post_id/owner_confirm/:request_id' => 'homes#owner_confirm', as: :owner_confirm
+
 end

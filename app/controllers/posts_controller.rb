@@ -25,7 +25,9 @@ class PostsController < ApplicationController
     @bigarray = []
     current_user.posts.each do |p|
       smallarray = []
-      2.times {smallarray << p.title}
+      # 2.times {smallarray << p.title}
+      smallarray << p.title
+      smallarray << p.id
       @bigarray << smallarray
     end
   end
@@ -41,6 +43,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    @post.status = "Available"
 
     respond_to do |format|
       if @post.save
