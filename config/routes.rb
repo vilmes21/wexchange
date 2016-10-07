@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :owner_confirmations, only: [:create]
+
   root "homes#home"
   get '/about'=> 'homes#about', as: :about
   get '/faq'=> 'homes#faq', as: :faq
@@ -22,6 +24,6 @@ Rails.application.routes.draw do
   get '/watches' => 'homes#watches', as: :watches
   get '/requests/:id' => 'requests#show', as: :request
   get '/user_requests' => 'homes#user_requests', as: :user_requests
-  get '/:post_id/owner_confirm/:request_id' => 'homes#owner_confirm', as: :owner_confirm
+  # get '/:post_id/owner_confirm/:request_id' => 'homes#owner_confirm', as: :owner_confirm
 
 end

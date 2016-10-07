@@ -11,12 +11,24 @@
 # les_tags.each {|tag| Tag.create({name: tag})}
 
 # Seeding Post
-# 30.times do
-#   Post.create({title: Faker::Pokemon.name,
-#   description: Faker::Lorem.sentence,
+# 150.times do
+#   Request.create({title: ("I am "+ Faker::Company.name),
+#   message: "Cest un request msg.",
+#   post_id: rand(47)+56,
+#   user_id: 1,
+#   offer: [User.find(1).posts].pluck(:id)})
+# end
+#
+# Request.find_each do |x|
+#   x.offer = [65, 75, 77, 78, 84, 90, 93].sample
+#   x.save
+# end
+
+# 50.times do
+#   Post.create({title: Faker::Company.name,
+#   description: Faker::Company.catch_phrase,
 #   value: rand(55),
 #   user_id: (rand(9)+1),
 #   location: Faker::Address.street_address,
-#   duration: rand(6),
 #   category: ['Item', 'Service'].sample})
 # end
