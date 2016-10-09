@@ -1,4 +1,19 @@
 class Post < ApplicationRecord
+  include AASM
+
+  aasm :column => 'state' do
+    state :available, :initial => true
+    state :exchanging, :exchanged
+
+    event :exchanging do
+      transitions :from => :available, :to => :exchanging
+    end
+
+    event :complete do
+      transitions :from => :exchanging, :to => :exchanged
+    end
+  end
+
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings

@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    @post.status = "Available"
+    # @post.status = "Available"
 
     respond_to do |format|
       if @post.save

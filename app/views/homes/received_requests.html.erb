@@ -1,0 +1,63 @@
+this is received_requests.html.erb controlled by homes#received_requests
+
+<%= link_to user_path(session[:user_id]) do %>
+  <button>Back</button>
+<% end %>
+
+<h2>Requests to review</h2>
+<% @pending_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+    <div>
+      <% if r.may_accept? %>
+      <%= link_to owner_confirmations_path(post_id: r.post_id, request_id: r.to_param), method: :post, remote: true do %>
+        <button>Accept</button>
+        <% end %>
+      <% end %>
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<h2>Accepted Requests (Waiting for Buyer Confirmation)</h2>
+<% @accepted_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+    <%= link_to messages_path(request_id: r.to_param) do %>
+      <button>Communication Board</button>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Declined Requests</h2>
+<% @declined_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Cancelled Requests</h2>
+<% @cancelled_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Completed Requests</h2>
+<% @completed_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>

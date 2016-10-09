@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :watches, dependent: :destroy
   has_many :watched_posts, through: :watches, source: :post
+  has_many :messages, dependent: :nullify
 
 
   # validates :name, uniqueness: {scope: :email}

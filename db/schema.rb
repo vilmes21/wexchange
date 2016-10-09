@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003010121) do
+ActiveRecord::Schema.define(version: 20161009032909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20161003010121) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "request_id"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "to_user"
+    t.boolean  "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_messages_on_request_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
@@ -52,7 +64,7 @@ ActiveRecord::Schema.define(version: 20161003010121) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "category"
-    t.string   "status"
+    t.string   "state"
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -61,10 +73,11 @@ ActiveRecord::Schema.define(version: 20161003010121) do
     t.string   "message"
     t.integer  "post_id"
     t.integer  "user_id"
-    t.string   "offer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "status"
+    t.string   "state"
+    t.integer  "offer_id"
+    t.integer  "to_user"
     t.index ["post_id"], name: "index_requests_on_post_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -128,6 +141,8 @@ ActiveRecord::Schema.define(version: 20161003010121) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "requests"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "requests", "posts"
   add_foreign_key "requests", "users"

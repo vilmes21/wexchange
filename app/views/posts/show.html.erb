@@ -96,7 +96,7 @@
   <% end %>
 </div>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @post.user != @current_user%>
   <h2>Like it? Request an Exchange!</h2>
   <%= simple_form_for([@post, @request]) do |f| %>
     <% if @request.errors.any? %>
@@ -113,7 +113,7 @@
 
       <%= f.input :title %>
       <b>Offer one of your items in exchange:</b>
-      <%= f.select :offer, @bigarray, label: "feixue" %>
+      <%= f.select :offer_id, @bigarray, label: "feixue" %>
       <%= f.input :message %>
       <%= f.button :submit, value: "Send Request!", class: "btn btn-primary"%>
   <% end %>

@@ -9,42 +9,47 @@ class HomesController < ApplicationController
   def about
   end
 
-  def messages
-    @posts = current_user.posts
-
+  def received_requests
+    # @posts = current_user.posts
+    @requests ||= Request.where(to_user: session[:user_id])
+    @pending_requests = @requests.where(state: :pending)
+    @accepted_requests = @requests.where(state: :accepted)
+    @declined_requests = @requests.where(state: :declined)
+    @cancelled_requests = @requests.where(state: :cancelled)
+    @completed_requests = @requests.where(state: :completed)
   end
 
   def watches
     @watched_posts = current_user.watched_posts
     @number_watched = current_user.watched_posts.count
-
   end
 
   def user_requests
-    @user_requests = Request.where(user_id: session[:user_id])
+    @user_requests ||= Request.where(user_id: session[:user_id])
     @number_sent = @user_requests.count
+
+    @pending_requests = @user_requests.where(state: :pending)
+    @accepted_requests = @user_requests.where(state: :accepted)
+    @declined_requests = @user_requests.where(state: :declined)
+    @cancelled_requests = @user_requests.where(state: :cancelled)
+    @completed_requests = @user_requests.where(state: :completed)
   end
 
-  def owner_confirm
-    post = Post.find params[:post_id]
-    post.status = "Exchanging"
-    post.working_request_id = params[:request_id]
-
-    request = Request.find params[:request_id]
-    request.status = "Exchanging"
-
-    declined_requests = post.requests.where(status: "Pending")
-    declined_requests.each do |dr|
-      dr.status = "Declined"
-      dr.save
+  def reset_confirm
+    Post.where.not(state: :available).find_each do |x|
+      x.state = :available
+      x.working_request_id = nil
+      x.save
     end
 
-    if post.save && request.save
-      redirect_to user_path(session[:user_id]), notice: "Request accepted. Exchange in progress!"
-    else
-      render messages_path
-      flash[:alert] = "Acceptance failed."
+    Request.find_each do |x|
+      unless x.pending?
+        x.state = :pending
+        x.save
+      end
     end
+
+    Message.destroy_all
   end
 
 end
