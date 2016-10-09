@@ -1,0 +1,16 @@
+in messages' index.html.erb, controlled by messages#index
+All communications about request number: <%= params[:request_id] %> <br>
+
+Conversations: <hr>
+<% @messages.each do |m| %>
+  <%= m.user.name %>: <%= m.body %> <br>
+<% end %>
+
+<hr>
+<%= simple_form_for @message do |f| %>
+  <%= f.input :request_id, as: :hidden, input_html: { value: params[:request_id] } %>
+  <%= f.input :body, label: false, placeholder: "Send a message here..." %>
+  <%= f.input :user_id, as: :hidden, input_html: { value: session[:user_id] }  %>
+  <%= f.input :to_user, as: :hidden, input_html: { value: @request.user_id } %>
+  <%= f.submit "Send" %>
+<% end %>

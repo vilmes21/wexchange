@@ -17,6 +17,9 @@ You've sent out the following <%= @number_sent %> requests to other users:
     <%= link_to request_path(r) do %>
     <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
     <% end %>
+    <%= link_to messages_path(request_id: r.to_param) do %>
+      <button>Communication Board</button>
+    <% end %>
   </div>
 <% end %>
 

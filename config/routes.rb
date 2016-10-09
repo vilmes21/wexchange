@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :messages, only: [:create]
+  resources :messages, only: [:create, :index]
 
   resources :posts do
     resources :likes, only: [:create, :destroy], shallow: true
@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   root "homes#home"
   get '/about'=> 'homes#about', as: :about
   get '/faq'=> 'homes#faq', as: :faq
-  get '/messages' => 'homes#messages', as: :messages
+  get '/received_requests' => 'homes#received_requests', as: :received_requests
+  # get '/messages' => 'homes#messages', as: :messages
   get '/watches' => 'homes#watches', as: :watches
   get '/requests/:id' => 'requests#show', as: :request
   get '/user_requests' => 'homes#user_requests', as: :user_requests

@@ -1,4 +1,4 @@
-this is messages.html.erb controlled by homes#messages
+this is received_requests.html.erb controlled by homes#received_requests
 <h2>Requests to review</h2>
 <% @pending_requests.each do |r| %>
   <div class="well well-sm">
@@ -11,7 +11,9 @@ this is messages.html.erb controlled by homes#messages
         <button>Accept</button>
         <% end %>
       <% end %>
-    <button>Communication Board</button>  
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
     </div>
   </div>
 <% end %>
@@ -21,6 +23,9 @@ this is messages.html.erb controlled by homes#messages
   <div class="well well-sm">
     <%= link_to request_path(r) do %>
     <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+    <%= link_to messages_path(request_id: r.to_param) do %>
+      <button>Communication Board</button>
     <% end %>
   </div>
 <% end %>

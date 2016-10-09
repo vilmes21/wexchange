@@ -6,7 +6,7 @@
   <% end %>
 </div>
 
-<%= link_to messages_path do %>
+<%= link_to received_requests_path do %>
   <button>
     Message Box
   </button>
@@ -54,11 +54,17 @@
   <% @exchanging_posts.each do |ep| %>
     Title: <%= ep.title %> <br>
     trading with request number: <%= ep.working_request_id %> <br>
-    from user: <%= ep.user.name %> <br>
+    Post owner: <%= ep.user.name %> <br>
+    Trading with user: <%= Request.find(ep.working_request_id).user.name %> <br>
     <% if ep.id == Request.find(ep.working_request_id).offer_id %>
       <%= link_to buyer_confirmations_path(offer_id: ep.id), method: :post, remote: true do %>
         <button>Buyer Confirm</button>
       <% end %>
+    <% else %>
+      <button>Waiting for buyer Confirmation</button>
+    <% end %><hr>
+    <%= link_to messages_path(request_id: ep.working_request_id) do %>
+      <button>Communication Board</button>
     <% end %>
   <% end %>
 </div>

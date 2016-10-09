@@ -9,7 +9,7 @@ class HomesController < ApplicationController
   def about
   end
 
-  def messages
+  def received_requests
     # @posts = current_user.posts
     @requests ||= Request.where(to_user: session[:user_id])
     @pending_requests = @requests.where(state: :pending)
@@ -48,6 +48,8 @@ class HomesController < ApplicationController
         x.save
       end
     end
+
+    Message.destroy_all
   end
 
 end
