@@ -1,4 +1,9 @@
 this is received_requests.html.erb controlled by homes#received_requests
+
+<%= link_to user_path(session[:user_id]) do %>
+  <button>Back</button>
+<% end %>
+
 <h2>Requests to review</h2>
 <% @pending_requests.each do |r| %>
   <div class="well well-sm">

@@ -1,5 +1,9 @@
 we're in homes/user_requests.html.erb controlled by homes#user_requests
 
+<%= link_to user_path(session[:user_id]) do %>
+  <button>Back</button>
+<% end %>
+
 You've sent out the following <%= @number_sent %> requests to other users:
 
 <h2>Requests Waiting to be Accepted</h2>
@@ -7,6 +11,9 @@ You've sent out the following <%= @number_sent %> requests to other users:
   <div class="well well-sm">
     <%= link_to request_path(r) do %>
     <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+    <%= link_to messages_path(request_id: r.to_param) do %>
+      <button>Communication Board</button>
     <% end %>
   </div>
 <% end %>
