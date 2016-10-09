@@ -26,11 +26,12 @@
 
 <div class="well well-lg">
   Your Current Posts:
-  <% current_user.posts.each do |p| %>
+  <% current_user.posts.where(state: :available).each do |p| %>
     <%= link_to post_path(p) do%>
     <div class="well well-sm">
       Title: <%= p.title %> |
-      category: <%= p.category %>
+      category: <%= p.category %> |
+      state: <%= p.state %>
     </div>
     <% end %>
   <% end %>
@@ -49,27 +50,28 @@
 </div>
 
 <div class="well well-lg">
-  Exchanges in Progress <br>
-  <%# if @exchanging_posts.present? %>
-    <%# @exchanging_posts.each do |ep| %>
-      <!-- Title: <%#= ep.title %> <br>
-      trading with request number: <%#= ep.working_request_id %> <br> -->
-    <%# end %>
-  <%# else %>
-    <!-- No currently happening exchanges. -->
-  <%# end %>
-
-  <% current_user.posts.each do |ep| %>
-    <% if ep.may_finish? %>
-      Title: <%= ep.title %> <br>
-      trading with request number: <%= ep.working_request_id %> <br>
+  Exchanges in progress <br>
+  <% @exchanging_posts.each do |ep| %>
+    Title: <%= ep.title %> <br>
+    trading with request number: <%= ep.working_request_id %> <br>
+    from user: <%= ep.user.name %> <br>
+    <% if ep.id == Request.find(ep.working_request_id).offer_id %>
+      <%= link_to buyer_confirmations_path(offer_id: ep.id), method: :post, remote: true do %>
+        <button>Buyer Confirm</button>
+      <% end %>
     <% end %>
   <% end %>
-
 </div>
 
 <div class="well well-lg">
   Exchange History
+    <% @history_posts.each do |hp| %>
+    <div>
+      Title: <%= hp.title %> |
+      Exchanged with: BLAH |
+      Exchanged at: <%= hp.updated_at %>
+    </div>
+    <% end %>
 </div>
 
 <p>

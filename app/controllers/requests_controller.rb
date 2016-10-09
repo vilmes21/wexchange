@@ -35,7 +35,7 @@ class RequestsController < ApplicationController
     end
 
     def request_params
-      params.require(:request).permit(:title, :message, :offer)
+      params.require(:request).permit(:title, :message, :offer_id)
     end
 
 end

@@ -4,7 +4,7 @@ all the requests. (il faut be all requests of THIS post.)
   <% @requests.each do |r| %>
   <li class="list-group-item">
     title: <%= r.title %> <br>
-    offer: <%= r.offer %> <br>
+    offering post: <%= r.offer_id %> <br>
     message: <%= r.message %><br>
     all for post with id: <%= r.post_id %> <br>
     <%= link_to "delete XXXXX", post_request_path(r.post_id, r), method: :delete %>

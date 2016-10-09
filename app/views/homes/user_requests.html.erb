@@ -1,11 +1,48 @@
-we're in homes/user_requests.html.erb
+we're in homes/user_requests.html.erb controlled by homes#user_requests
 
 You've sent out the following <%= @number_sent %> requests to other users:
 
-<% @user_requests.each do |ur| %>
-  <%= link_to request_path(ur) do %>
+<h2>Requests Waiting to be Accepted</h2>
+<% @pending_requests.each do |r| %>
   <div class="well well-sm">
-    <%= ur.title %> | to BLAH | state of your request: <%= ur.state %>
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
   </div>
-  <% end %>
+<% end %>
+
+<h2>They Accepted these Requests of YOURS, congrats</h2>
+<% @accepted_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Declined Requests</h2>
+<% @declined_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Cancelled Requests</h2>
+<% @cancelled_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Completed Requests</h2>
+<% @completed_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
 <% end %>

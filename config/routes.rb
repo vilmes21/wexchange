@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :messages, only: [:create]
+
   resources :posts do
     resources :likes, only: [:create, :destroy], shallow: true
     resources :requests, only: [:create, :index, :destroy]
@@ -16,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :owner_confirmations, only: [:create]
+  resources :buyer_confirmations, only: [:create]
 
   root "homes#home"
   get '/about'=> 'homes#about', as: :about
@@ -25,5 +28,7 @@ Rails.application.routes.draw do
   get '/requests/:id' => 'requests#show', as: :request
   get '/user_requests' => 'homes#user_requests', as: :user_requests
   # get '/:post_id/owner_confirm/:request_id' => 'homes#owner_confirm', as: :owner_confirm
+
+  post '/reset_confirm' => 'homes#reset_confirm', as: :reset_confirm
 
 end

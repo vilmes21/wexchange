@@ -1,17 +1,53 @@
-all the msg are here. we're in `messages.html.erb`
-
-<% @posts.each do |p| %>
-  <% p.requests.each do |pr| %>
-      <div class="well well-sm">
-        <%= link_to request_path(pr) do %>
-          <%= pr.title %> | from user <%= pr.user.name %> | state of this request: <%= pr.state %> <br> offering item <%= pr.offer %>
+this is messages.html.erb controlled by homes#messages
+<h2>Requests to review</h2>
+<% @pending_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+    <div>
+      <% if r.may_accept? %>
+      <%= link_to owner_confirmations_path(post_id: r.post_id, request_id: r.to_param), method: :post, remote: true do %>
+        <button>Accept</button>
         <% end %>
+      <% end %>
+    <button>Communication Board</button>  
+    </div>
+  </div>
+<% end %>
 
-         <div>
-          <% if p.may_exchanging? && pr.may_accept? %>
-            <%= link_to "Accept", owner_confirmations_path(post_id: p.to_param, request_id: pr.to_param), method: :post, remote: true %>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
+<h2>Accepted Requests (Waiting for Buyer Confirmation)</h2>
+<% @accepted_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Declined Requests</h2>
+<% @declined_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Cancelled Requests</h2>
+<% @cancelled_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Completed Requests</h2>
+<% @completed_requests.each do |r| %>
+  <div class="well well-sm">
+    <%= link_to request_path(r) do %>
+    <%= r.title %> | from user <%= r.user.name %> | state of this request: <%= r.state %> <br> offering item <%= r.offer_id %>
+    <% end %>
+  </div>
 <% end %>

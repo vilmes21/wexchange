@@ -14,7 +14,7 @@ class OwnerConfirmationsController < ApplicationController
     request.save
 
     # post 2 state update:
-    post2 = Post.find request.offer
+    post2 = Post.find request.offer_id
     post2.exchanging
     post2.working_request_id = params[:request_id]
     post2.save
@@ -36,7 +36,7 @@ class OwnerConfirmationsController < ApplicationController
     end
 
     # cancel all other requests that offered post1
-    Request.where(offer: post.id).each do |ro|
+    Request.where(offer_id: post.id).each do |ro|
       if ro.may_cancel?
         ro.cancel
         ro.save
@@ -44,7 +44,7 @@ class OwnerConfirmationsController < ApplicationController
     end
 
     # cancel all other requests that offered post2
-    Request.where(offer: post2.id).each do |ro|
+    Request.where(offer_id: post2.id).each do |ro|
       if ro.may_cancel?
         ro.cancel
         ro.save

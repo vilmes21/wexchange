@@ -9,11 +9,11 @@ class Post < ApplicationRecord
       transitions :from => :available, :to => :exchanging
     end
 
-    event :finish do
+    event :complete do
       transitions :from => :exchanging, :to => :exchanged
     end
   end
-  
+
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
