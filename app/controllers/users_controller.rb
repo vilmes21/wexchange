@@ -62,6 +62,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :points, :location)
+      params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :points, :location, {desired_tag_ids: []})
     end
 end

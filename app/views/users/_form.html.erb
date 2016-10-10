@@ -18,6 +18,12 @@
     <%= f.input :password_confirmation, label: "Confirm Password" %>
     <%= f.input :points, label: "Points. VIC: should be hidden" %>
     <%= f.input :location, label: "Address" %>
+    <div class="form-group">
+      <b>What types of items would you like to acquire?</b>
+      <%= f.collection_select(:desired_tag_ids, Tag.all, :id, :name,
+      {},
+      { multiple: true, class: 'form-control' }) %>
+    </div>
     <%= f.button :submit, value: "Join Club!", class: "btn btn-primary"%>
 <% end %>
 

@@ -14,3 +14,10 @@
  *= require bootstrap_and_overrides
  *= require_self
  */
+
+#logo {
+  height: 60px;
+}
+
+/*testing footer css begin*/
+/*testing footer css end*/

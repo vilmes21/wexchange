@@ -1,4 +1,59 @@
 <h1>CUT OUT CODE </h1>
+From application html search bar not needed
+```html
+<form class="navbar-form navbar-left">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+```
+
+dropdown button:
+```html  
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</li>
+```
+
+another dropdown button:
+```html
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">One more separated link</a></li>
+  </ul>
+</li>
+```
+
+source code for `search bar`, but didn't follow entirely:
+```html
+<div class="row">
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Keywords...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+```
+
+*****************
 From `_form.html.erb` autoly generated form for new post:
 ```html
 <div class="field">

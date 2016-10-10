@@ -6,14 +6,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- for footer links begin -->
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!-- for footer links end -->
   </head>
 
   <body>
     <nav class="navbar navbar-default">
-      <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="/">
-            <img alt="Brand" src="...">
+            <img alt="Brand" src="/assets/logo.png" id="logo">
+            <%#= image_tag "logo.png", id: "vic" %>
           </a>
         </div>
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,51 +35,23 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/about">About <span class="sr-only">(current)</span></a></li>
             <li><a href="/faq">FAQ</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+
           <ul class="nav navbar-nav navbar-right">
-            <li><a href=<%= new_user_path %>>Register</a></li>
-            <li><a href=<%= new_session_path %>>Login</a></li>
-            <li>Hi, <%= session[:user_name] || "how are you today?" %></li>
+            <li><%= link_to "Create Post", new_post_path %></li>
+            <li><%= link_to "All Posts", posts_path %></li>
 
             <% if user_signed_in? %>
             <li><%= link_to "User Panel", user_path(session[:user_id]) %></li>
             <li><%= link_to "Logout", sessions_path, method: :delete %></li>
             <% end %>
+            <li><a href=<%= new_session_path %>>Login</a></li>
+            <li><a href=<%= new_user_path %>>Register</a></li>
+            <li>Hi, <%= session[:user_name] || "how are you today?" %></li>
 
-            <li><%= link_to "RESET Confirm", reset_confirm_path, method: :post, remote: true %></li>
-            <li><%= link_to "Create Post", new_post_path %></li>
-            <li><%= link_to "All Posts", posts_path %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
+
           </ul>
         </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container">
@@ -87,8 +63,68 @@
     <nav class="navbar navbar-default navbar-bottom" role="navigation">
       <div class="container">
         <h1>Hello World footer</h1>
+        <h3><%= link_to "RESET Confirm", reset_confirm_path, method: :post, remote: true %></h3>
       </div>
     </nav>
+<!-- for footer begin-->
+<footer class="footer-distributed">
 
+  <div class="footer-left">
+
+    <h3>W<span>exchange</span></h3>
+
+    <p class="footer-links">
+      <a href="<%= root_path %>">Home</a>
+      |
+      <a href="<%= posts_path %>">Posts</a>
+      |
+      <a href="<%= about_path %>">About</a>
+      |
+      <a href="<%= faq_path %>">Faq</a>
+    </p>
+
+    <p class="footer-company-name">Wexchange Innovation &copy; 2016</p>
+  </div>
+
+  <div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>123 W Georgia Street</span> Vancouver, Canada</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+1 (778)708-6336</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:jerrywangvic@gmail.com">jerrywangvic@gmail.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span>Why Wexchange App?</span>
+      To promote resource reuse, retaliate hording culture, and foster eco-consciousness!
+    </p>
+
+    <div class="footer-icons">
+
+      <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/vic-hl-wang"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/vilmes21"><i class="fa fa-github"></i></a>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- for footer end -->
   </body>
 </html>

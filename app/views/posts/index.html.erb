@@ -1,7 +1,20 @@
-<%= form_tag(posts_path, method: :get, id: "search-form") do %>
-<%= text_field_tag :search, params[:search], placeholder: "Start searching" %>
-<%= submit_tag "Search !" %>
-<% end %>
+
+
+
+<!-- Full Screen search bar begin -->
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="#search"><span class="glyphicon glyphicon-search"></span></a></li>
+</ul>
+
+<div id="search">
+    <button type="button" class="close">×</button>
+    <form method="get" action="<%= posts_path %>">
+        <input type="search" name="search" value="<%= params[:search] %>" placeholder="Keyword(s)..." />
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+</div>
+<!-- full screen search bar ends -->
+
 
 <% if @service_posts.present? || @item_posts.present? || @volunteer_posts.present? %>
   <h2>Here are the search results:</h2>
