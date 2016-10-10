@@ -19,5 +19,9 @@
   height: 60px;
 }
 
+#bigbody {
+  background-image: url('bg2.jpeg');
+  background-repeat: no-repeat;
+}
 /*testing footer css begin*/
 /*testing footer css end*/

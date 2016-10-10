@@ -189,3 +189,14 @@ Maybe will use for request creating form in post show:
   <button type="submit" class="btn btn-default">Send Request</button>
 <% end %>
 ```
+==========================
+old footer
+```html
+<!-- Footer -->
+    <nav class="navbar navbar-default navbar-bottom" role="navigation">
+      <div class="container">
+        <h1>Hello World footer</h1>
+        <h3><%= link_to "RESET Confirm", reset_confirm_path, method: :post, remote: true %></h3>
+      </div>
+    </nav>
+```

@@ -44,9 +44,9 @@
             <td><%= post.value %></td>
             <td><%= post.user.name %></td>
             <td><%= post.location %></td>
-            <td><%= link_to 'Show', post %></td>
-            <td><%= link_to 'Edit', edit_post_path(post) %></td>
-            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to '<span class="glyphicon glyphicon-th-list"></span> Show'.html_safe, post %></td>
+            <td><%= link_to '<span class="glyphicon glyphicon-edit"></span> Edit'.html_safe, edit_post_path(post) %></td>
+            <td><%= link_to '<span class="glyphicon glyphicon-trash"></span> Delete'.html_safe, post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
