@@ -1,4 +1,51 @@
+<!-- style for accordian begin -->
+<style>
+button.accordion {
+    /*background-color: #eee;*/
+    background-color: rgba(48, 98, 74, 0.1);
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: rgba(48, 98, 74, 0.4);
+    /*background-color: #ddd;*/
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
+
+#bio {
+  background-color: rgba(72, 163, 191, 0.48);
+  padding: 20px;
+  width: 35%;
+  float: right;
+  margin-bottom: 20px;
+}
+</style>
+<!-- style for accordian end -->
+
 <div class="container">
+  <h2><span class="glyphicon glyphicon-cog"></span> User Panel</h2>
+  <h3><%= @user.name %></h3>
   <p id="notice"><%= notice %></p>
 
   <div class="well"> You want these kinds of items:
@@ -7,9 +54,53 @@
     <% end %>
   </div>
 
+<div id="bio">
+  <h4>Bio Info</h4>
+  <div><%= link_to 'Edit Personal Info', edit_user_path(@user) %></div>
+  <p>
+    Joined Since: <%= @user.created_at %>
+  </p>
+
+  <p>
+    Points: <%= @user.points %>
+  </p>
+
+  <p>
+    <%= @number_history %> of Exchanges Completed
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <strong>Phone:</strong>
+    <%= @user.phone %>
+  </p>
+
+  <p>
+    <strong>Points:</strong>
+    <%= @user.points %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </p>
+
+  <p>
+    <strong>Looking for:</strong>
+    <% @user.desired_tags.each do |t| %>
+      <%= t.name %> |
+    <% end %>
+  </p>
+</div>
+
+
   <%= link_to received_requests_path do %>
-    <button>
-      Message Box
+    <button class="btn btn-default">
+      <span class="glyphicon glyphicon-inbox"></span> Received Requests
     </button>
   <% end %>
 
@@ -25,104 +116,71 @@
     </div>
   <% end %>
 
-  <div class="well well-lg">
-    Your Current Posts:
-    <% current_user.posts.where(state: :available).each do |p| %>
-      <%= link_to post_path(p) do%>
-      <div class="well well-sm">
-        Title: <%= p.title %> |
-        category: <%= p.category %> |
-        state: <%= p.state %>
-      </div>
-      <% end %>
-    <% end %>
 
-  </div>
-
-  <div class="well well-lg">
-    There are <%= suggestions.count %> suggested Exchanges for you:
-    <div>
-      <% suggestions.each do |p| %>
-        <%= link_to post_path(p) do %>
-          <%= p.title %> <br>
-        <% end %>
-      <% end %>
+<button class="accordion">Manage Your Posts (<%= @number_posts %>)</button>
+<div class="panel">
+  <% @posts.each do |p| %>
+    <%= link_to post_path(p) do%>
+    <div class="well well-sm">
+      Title: <%= p.title %> |
+      category: <%= p.category %> |
+      state: <%= p.state %>
     </div>
-  </div>
-
-  <div class="well well-lg">
-    Exchanges in progress <br>
-    <% @exchanging_posts.each do |ep| %>
-      Title: <%= ep.title %> <br>
-      trading with request number: <%= ep.working_request_id %> <br>
-      Post owner: <%= ep.user.name %> <br>
-      Trading with user: <%= Request.find(ep.working_request_id).user.name %> <br>
-      <% if ep.id == Request.find(ep.working_request_id).offer_id %>
-        <%= link_to buyer_confirmations_path(offer_id: ep.id), method: :post, remote: true do %>
-          <button>Buyer Confirm</button>
-        <% end %>
-      <% else %>
-        <button>Waiting for buyer Confirmation</button>
-      <% end %>
-      <%= link_to messages_path(request_id: ep.working_request_id) do %>
-        <button>Communication Board</button>
-      <% end %><hr>
     <% end %>
-  </div>
+  <% end %>
+</div>
 
-  <div class="well well-lg">
-    Exchange History
-      <% @history_posts.each do |hp| %>
-      <div>
-        Title: <%= hp.title %> |
-        Exchanged with: BLAH |
-        Exchanged at: <%= hp.updated_at %>
-      </div>
+<button class="accordion">Suggested Exchanges for You (<%= suggestions.count %>)</button>
+<div class="panel">
+  <% suggestions.each do |p| %>
+    <%= link_to post_path(p) do %>
+      <%= p.title %> <br>
+    <% end %>
+  <% end %>
+</div>
+
+<button class="accordion">Exchanges in proress (<%= @number_exchanging %>)</button>
+<div id="foo" class="panel">
+  <% @exchanging_posts.each do |ep| %>
+    Title: <%= ep.title %> <br>
+    trading with request number: <%= ep.working_request_id %> <br>
+    Post owner: <%= ep.user.name %> <br>
+    Trading with user: <%= Request.find(ep.working_request_id).user.name %> <br>
+    <% if ep.id == Request.find(ep.working_request_id).offer_id %>
+      <%= link_to buyer_confirmations_path(offer_id: ep.id), method: :post, remote: true do %>
+        <button>Buyer Confirm</button>
       <% end %>
+    <% else %>
+      <button>Waiting for buyer Confirmation</button>
+    <% end %>
+    <%= link_to messages_path(request_id: ep.working_request_id) do %>
+      <button>Communication Board</button>
+    <% end %><hr>
+  <% end %>
+</div>
+
+<button class="accordion">Exchange History (<%= @number_history %>)</button>
+<div class="panel">
+  <% @history_posts.each do |hp| %>
+  <div>
+    Title: <%= hp.title %> |
+    Exchanged with: BLAH |
+    Exchanged at: <%= hp.updated_at %>
   </div>
+  <% end %>
+</div>
 
-  <p>
-    Joined Since: <%= @user.created_at %>
-  </p>
-
-  <p>
-    Points: <%= @user.points %>
-  </p>
-
-  <p>
-    xxx of Exchanges Completed
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= @user.phone %>
-  </p>
-
-  <p>
-    <strong>Password digest:</strong>
-    <%= @user.password_digest %>
-  </p>
-
-  <p>
-    <strong>Points:</strong>
-    <%= @user.points %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= @user.location %>
-  </p>
-
-  <%= link_to 'Edit', edit_user_path(@user) %> |
 
 </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function(){
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("show");
+  }
+}
+</script>

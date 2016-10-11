@@ -1,5 +1,13 @@
-<div class="container">
-  <h1>Not a Member Yet? Register Here!</h1>
+<style>
+#signup {
+  background-color: rgba(178, 194, 149, 0.2);
+}
+
+</style>
+
+<div class="container" id="signup">
+  <h1>Sign up with us!</h1>
+  <h3>Already have an acount? Simply <%= link_to "log in", new_session_path %>.</h3>
 
   <%= render 'users/form', user: @user %>
 
