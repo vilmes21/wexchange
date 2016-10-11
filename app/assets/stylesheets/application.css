@@ -20,8 +20,19 @@
 }
 
 #bigbody {
-  background-image: url('bg2.jpeg');
-  background-repeat: no-repeat;
+  /*background-image: url('bg2.jpeg');*/
+  background-color: rgba(75, 115, 114, 0.53);
+  background-image: url('birds.png');
+  /*background-repeat: no-repeat;*/
+  background-repeat:repeat;
 }
-/*testing footer css begin*/
-/*testing footer css end*/
+
+.texts {
+  margin: 0px 80px auto 100px;
+  padding: 30px;
+}
+
+.sections {
+  background-color: rgba(116, 147, 134, 0.15);
+  /*background-image: url('bg.png');*/
+}
