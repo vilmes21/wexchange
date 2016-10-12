@@ -1,12 +1,24 @@
 <!-- style for accordian begin -->
 <style>
+#bigbody {
+  background-image: url('/assets/bg7.jpeg');
+  background-size: cover;
+}
+
+#user_profile {
+  overflow: hidden;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /*border-radius: 100px;*/
+}
+
 button.accordion {
     /*background-color: #eee;*/
     background-color: rgba(48, 98, 74, 0.1);
     color: #444;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 30%;
     border: none;
     text-align: left;
     outline: none;
@@ -45,17 +57,12 @@ div.panel.show {
 
 <div class="container">
   <h2><span class="glyphicon glyphicon-cog"></span> User Panel</h2>
-  <h3><%= @user.name %></h3>
+
+  <h3><%= @user.name %> <span class="glyphicon glyphicon-camera"></span></h3>
   <p id="notice"><%= notice %></p>
 
-  <div class="well"> You want these kinds of items:
-    <% @user.desired_tags.each do |p| %>
-      <%= p.name %> |
-    <% end %>
-  </div>
-
 <div id="bio">
-  <h4>Bio Info</h4>
+  <h4><span class="glyphicon glyphicon-info-sign"></span> Bio Info</h4>
   <div><%= link_to 'Edit Personal Info', edit_user_path(@user) %></div>
   <p>
     Joined Since: <%= @user.created_at %>
@@ -116,21 +123,28 @@ div.panel.show {
     </div>
   <% end %>
 
+  <div>
+      <img src="/assets/chimp.png" alt="one user" id="user_profile" height=auto class="img-thumbnail" width="250px">
+  </div>
 
-<button class="accordion">Manage Your Posts (<%= @number_posts %>)</button>
+<button class="accordion"> <span class="glyphicon glyphicon-th"></span> Manage Your Posts (<%= @number_posts %>)</button>
 <div class="panel">
   <% @posts.each do |p| %>
     <%= link_to post_path(p) do%>
     <div class="well well-sm">
       Title: <%= p.title %> |
       category: <%= p.category %> |
-      state: <%= p.state %>
+      state: <%= p.state %> <br>
+      <div>
+        <%= link_to '<span class="glyphicon glyphicon-edit"></span> Edit Post'.html_safe, edit_post_path(p) %> |
+        <%= link_to '<span class="glyphicon glyphicon-trash"></span> Delete Post'.html_safe, p, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
     </div>
     <% end %>
   <% end %>
 </div>
 
-<button class="accordion">Suggested Exchanges for You (<%= suggestions.count %>)</button>
+<button class="accordion"> <span class="glyphicon glyphicon-th-list"></span> Suggested Exchanges for You (<%= suggestions.count %>)</button>
 <div class="panel">
   <% suggestions.each do |p| %>
     <%= link_to post_path(p) do %>
@@ -139,7 +153,7 @@ div.panel.show {
   <% end %>
 </div>
 
-<button class="accordion">Exchanges in proress (<%= @number_exchanging %>)</button>
+<button class="accordion"> <span class="glyphicon glyphicon-refresh"></span> Exchanges in proress (<%= @number_exchanging %>)</button>
 <div id="foo" class="panel">
   <% @exchanging_posts.each do |ep| %>
     Title: <%= ep.title %> <br>
@@ -159,7 +173,7 @@ div.panel.show {
   <% end %>
 </div>
 
-<button class="accordion">Exchange History (<%= @number_history %>)</button>
+<button class="accordion"> <span class="glyphicon glyphicon-flag"></span> Exchange History (<%= @number_history %>)</button>
 <div class="panel">
   <% @history_posts.each do |hp| %>
   <div>

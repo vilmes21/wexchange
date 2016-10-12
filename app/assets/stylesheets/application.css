@@ -21,10 +21,10 @@
 
 #bigbody {
   /*background-image: url('bg2.jpeg');*/
-  background-color: rgba(75, 115, 114, 0.53);
-  background-image: url('birds.png');
+  /*background-color: rgba(75, 115, 114, 0.53);
+  background-image: url('birds.png');*/
   /*background-repeat: no-repeat;*/
-  background-repeat:repeat;
+  /*background-repeat:repeat;*/
 }
 
 .texts {

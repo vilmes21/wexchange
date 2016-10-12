@@ -1,5 +1,19 @@
-<div class="container">
-  <h1><span class="glyphicon glyphicon-user"></span>Log In</h1>
+<style>
+#bigbody {
+  background-image: url('/assets/bg3.jpg');
+  background-size: cover;
+}
+
+#signin {
+  background-color: rgba(178, 194, 149, 0.7);
+  width: 30%;
+  padding: 30px;
+}
+</style>
+
+<div class="container" id="signin">
+  <h1><span class="glyphicon glyphicon-user"></span> Log In</h1>
+  <h3>New user? Simply <%= link_to "sign up", new_user_path %>.</h3>
   <%= form_tag sessions_path do %>
     <div class="form-group">
 

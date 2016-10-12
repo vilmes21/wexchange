@@ -1,3 +1,10 @@
+<style>
+#bigbody {
+  background-image: url('/assets/bg1.jpeg');
+  background-size: cover;
+}
+</style>
+
 <div class="container">
 
   <!-- Full Screen search bar begin -->
@@ -22,6 +29,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>Image</th>
             <th>Title</th>
             <th>Description</th>
             <th>Value</th>
@@ -32,11 +40,13 @@
         <tbody>
           <% @item_posts.each do |post| %>
           <tr>
+            <%= link_to post_path(post) do %>
+              <td><%= image_tag("mac.jpeg", height: "150px", alt: "macbook") %></td>
+            <% end %>
             <td><%= post.title %></td>
             <td><%= post.description %></td>
             <td><%= post.value %></td>
             <td><%= link_to 'Show', post %></td>
-
           </tr>
           <% end %>
         </tbody>

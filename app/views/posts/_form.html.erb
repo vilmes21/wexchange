@@ -21,8 +21,8 @@
   </div>
   <%= f.input :description %>
   <%= f.input :value, label: "Points Worth" %>
-  <%= f.input :location, label: "Address (VIC: add same-address option)" %>
-  <%= f.input :duration %>
-  <%= f.input :time %>
+  <%= f.input :location, label: '<span class="glyphicon glyphicon-map-marker"></span> Address'.html_safe %>
+  <%= f.input :duration, label: '<span class="glyphicon glyphicon-hourglass"></span> Duration'.html_safe %>
+  <%= f.input :time, label: '<span class="glyphicon glyphicon-time"></span> Time'.html_safe %>
   <%= f.button :submit, "Create Post" %>
 <% end %>
