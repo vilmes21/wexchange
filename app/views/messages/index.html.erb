@@ -1,6 +1,20 @@
 <style>
+#chating {
+  background-color: rgba(215, 146, 116, 0.91);
+  padding: 15px;
+}
+
 #backbtn {
   float: right;
+}
+
+.jumbotron {
+  text-align: center;
+}
+
+#bigbody {
+  background-image: url('/assets/bg9.jpeg');
+  background-size: cover;
 }
 </style>
 
@@ -15,10 +29,11 @@
                     <% end %>
 </div>
   <hr>
+<div id="chating">
   <% @messages.each do |m| %>
     <%= m.user.name %>: <%= m.body %> <br>
   <% end %>
-
+</div>
   <hr>
   <%= simple_form_for @message do |f| %>
     <%= f.input :request_id, as: :hidden, input_html: { value: params[:request_id] } %>
