@@ -31,7 +31,9 @@
   <hr>
 <div id="chating">
   <% @messages.each do |m| %>
-    <%= m.user.name %>: <%= m.body %> <br>
+    <div id="messages">
+      <%= m.user.name %>: <%= m.body %> <br>
+    </div>
   <% end %>
 </div>
   <hr>

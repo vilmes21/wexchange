@@ -14,8 +14,7 @@ table {
 }
 
 #bigbody {
-  background-image: url('/assets/bg.jpeg');
-  /*background-size: cover;*/
+  background-image: url('/assets/bg.png');
   background-repeat: repeat;
 }
 </style>
@@ -31,7 +30,7 @@ table {
       <button type="button" class="close">×</button>
       <form method="get" action="<%= posts_path %>">
           <input type="search" name="search" value="<%= params[:search] %>" placeholder="Keyword(s)..." />
-          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
   </div>
   <!-- full screen search bar ends -->
@@ -73,3 +72,23 @@ table {
   <% end %>
 
 </div>
+
+
+<!-- full screen search js begin -->
+<script type="text/javascript">
+$(function () {
+  console.log("hi vic");
+    $('a[href="#search"]').on('click', function(event) {
+        event.preventDefault();
+        $('#search').addClass('open');
+        $('#search > form > input[type="search"]').focus();
+    });
+
+    $('#search, #search button.close').on('click keyup', function(event) {
+        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+            $(this).removeClass('open');
+        }
+    });
+});
+</script>
+ <!-- full screen search js ends -->
