@@ -1,6 +1,22 @@
-<h1>Editing User</h1>
+<style>
+#bigbody {
+  background-image: url('/assets/bg4.jpg');
+  background-size: cover;
+}
 
-<%= render 'form', user: @user %>
+.container {
+  background-color: rgba(115, 158, 203, 0.7);
+  width: 30%;
+  margin-top: 50px;
+  padding: 30px;
+}
+</style>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class="container">
+  <h1>Editing User</h1>
+
+  <%= render 'form', user: @user %>
+
+  <%= link_to 'Show', @user %> |
+  <%= link_to 'Back', users_path %>
+</div>

@@ -15,16 +15,31 @@
  *= require_self
  */
 
+#yielding {
+  padding-top: 50px;
+}
+
 #logo {
-  height: 60px;
+  height: 55px;
+  margin-top: 0px;
+}
+
+#logo2 {
+  height: 75px;
+  margin-top: 0px;
+}
+
+.navbar {
+  height: 70px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: sans-serif;
 }
 
 #bigbody {
-  /*background-image: url('bg2.jpeg');*/
-  /*background-color: rgba(75, 115, 114, 0.53);
-  background-image: url('birds.png');*/
-  /*background-repeat: no-repeat;*/
-  /*background-repeat:repeat;*/
+  padding-bottom: 0;
+  padding-top: 20px;
 }
 
 .texts {
@@ -34,5 +49,4 @@
 
 .sections {
   background-color: rgba(116, 147, 134, 0.15);
-  /*background-image: url('bg.png');*/
 }

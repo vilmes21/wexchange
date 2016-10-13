@@ -1,5 +1,21 @@
 <!-- style for accordian begin -->
 <style>
+.container {
+  width: 80%;
+}
+
+#request_related {
+  margin-bottom: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
 #bigbody {
   background-image: url('/assets/bg7.jpeg');
   background-size: cover;
@@ -8,7 +24,7 @@
 #user_profile {
   overflow: hidden;
   margin-top: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   /*border-radius: 100px;*/
 }
 
@@ -35,76 +51,90 @@ div.panel {
     padding: 0 18px;
     background-color: white;
     max-height: 0;
-    overflow: hidden;
+    overflow: scroll;
     transition: 0.6s ease-in-out;
     opacity: 0;
 }
 
 div.panel.show {
-    opacity: 1;
+    opacity: 0.8;
     max-height: 500px;
+    padding: 20px;
 }
 
 #bio {
-  background-color: rgba(72, 163, 191, 0.48);
+  color: rgb(234, 236, 237);
+  background-color: rgba(191, 139, 69, 0.48);
   padding: 20px;
   width: 35%;
+  height: 650px;
   float: right;
+  margin-top: 25px;
   margin-bottom: 20px;
+  text-align: right;
 }
 </style>
 <!-- style for accordian end -->
 
 <div class="container">
-  <h2><span class="glyphicon glyphicon-cog"></span> User Panel</h2>
+  <h1><span class="glyphicon glyphicon-cog"></span> User Panel</h1>
 
-  <h3><%= @user.name %> <span class="glyphicon glyphicon-camera"></span></h3>
   <p id="notice"><%= notice %></p>
+  <hr>
 
 <div id="bio">
   <h4><span class="glyphicon glyphicon-info-sign"></span> Bio Info</h4>
-  <div><%= link_to 'Edit Personal Info', edit_user_path(@user) %></div>
+  <hr>
   <p>
-    Joined Since: <%= @user.created_at %>
+    <b>Joined Since:</b> <br> <%= @user.created_at %>
   </p>
 
   <p>
-    Points: <%= @user.points %>
+    <b>Points:</b><br> <%= @user.points %>
   </p>
 
   <p>
-    <%= @number_history %> of Exchanges Completed
+    <b><%= @number_history %></b> Exchanges Completed
   </p>
 
   <p>
-    <strong>Email:</strong>
+    <strong>Email:</strong><br>
     <%= @user.email %>
   </p>
 
   <p>
-    <strong>Phone:</strong>
+    <strong>Phone:</strong><br>
     <%= @user.phone %>
   </p>
 
   <p>
-    <strong>Points:</strong>
+    <strong>Points:</strong><br>
     <%= @user.points %>
   </p>
 
   <p>
-    <strong>Location:</strong>
+    <strong>Location:</strong><br>
     <%= @user.location %>
   </p>
 
   <p>
-    <strong>Looking for:</strong>
+    <strong>Looking for:</strong><br>
     <% @user.desired_tags.each do |t| %>
       <%= t.name %> |
     <% end %>
   </p>
+<hr>
+  <div><%= link_to '<button>Edit Personal Info</button>'.html_safe, edit_user_path(@user) %></div>
+
 </div>
 
+<div>
+    <img src="/assets/chimp.png" alt="one user" id="user_profile" height=auto class="img-thumbnail" width="250px">
+</div>
 
+  <h3><%= @user.name %> <span class="glyphicon glyphicon-camera"></span></h3>
+
+<div id="request_related">
   <%= link_to received_requests_path do %>
     <button class="btn btn-default">
       <span class="glyphicon glyphicon-inbox"></span> Received Requests
@@ -122,10 +152,7 @@ div.panel.show {
       Sent Requests (<%= @number_sent %>)
     </div>
   <% end %>
-
-  <div>
-      <img src="/assets/chimp.png" alt="one user" id="user_profile" height=auto class="img-thumbnail" width="250px">
-  </div>
+</div>
 
 <button class="accordion"> <span class="glyphicon glyphicon-th"></span> Manage Your Posts (<%= @number_posts %>)</button>
 <div class="panel">

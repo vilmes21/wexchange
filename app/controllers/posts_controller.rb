@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    redirect_to new_session_path unless user_signed_in?
     @number_watched = current_user.watched_posts.count
     @watcher_number = Watch.where(post_id: @post.id).count
     @likes_number = Like.where(post_id: @post.id).count
