@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925194557) do
+ActiveRecord::Schema.define(version: 20161009032909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,19 +40,31 @@ ActiveRecord::Schema.define(version: 20160925194557) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "request_id"
+    t.string   "body"
+    t.integer  "user_id"
+    t.integer  "to_user"
+    t.boolean  "read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_messages_on_request_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
     t.integer  "value"
     t.integer  "user_id"
     t.string   "location"
-    t.string   "exchanged_post_id"
+    t.string   "working_request_id"
     t.integer  "duration"
     t.time     "time"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "category_id"
-    t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "category"
+    t.string   "state"
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
@@ -61,9 +73,11 @@ ActiveRecord::Schema.define(version: 20160925194557) do
     t.string   "message"
     t.integer  "post_id"
     t.integer  "user_id"
-    t.string   "offer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "state"
+    t.integer  "offer_id"
+    t.integer  "to_user"
     t.index ["post_id"], name: "index_requests_on_post_id", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end
@@ -118,8 +132,8 @@ ActiveRecord::Schema.define(version: 20160925194557) do
     t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "category_id"
-    t.index ["category_id"], name: "index_wishes_on_category_id", using: :btree
+    t.integer  "tag_id"
+    t.index ["tag_id"], name: "index_wishes_on_tag_id", using: :btree
     t.index ["user_id"], name: "index_wishes_on_user_id", using: :btree
   end
 
@@ -127,7 +141,8 @@ ActiveRecord::Schema.define(version: 20160925194557) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "posts", "categories"
+  add_foreign_key "messages", "requests"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "requests", "posts"
   add_foreign_key "requests", "users"
@@ -136,6 +151,6 @@ ActiveRecord::Schema.define(version: 20160925194557) do
   add_foreign_key "taggings", "tags"
   add_foreign_key "watches", "posts"
   add_foreign_key "watches", "users"
-  add_foreign_key "wishes", "categories"
+  add_foreign_key "wishes", "tags"
   add_foreign_key "wishes", "users"
 end

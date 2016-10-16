@@ -1,43 +1,94 @@
-<p id="notice"><%= notice %></p>
+<style>
+.container {
+  width: 75%;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
 
-<h1>Posts</h1>
+h1 {
+  text-align: center;
+}
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Value</th>
-      <th>User</th>
-      <th>Location</th>
-      <th>Exchanged post</th>
-      <th>Duration</th>
-      <th>Time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+table {
+  margin-top: 20px;
+}
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= post.category %></td>
-        <td><%= post.value %></td>
-        <td><%= post.user %></td>
-        <td><%= post.location %></td>
-        <td><%= post.exchanged_post_id %></td>
-        <td><%= post.duration %></td>
-        <td><%= post.time %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+#bigbody {
+  background-image: url('/assets/bg.png');
+  background-repeat: repeat;
+}
+</style>
 
-<br>
+<div class="container">
 
-<%= link_to 'New Post', new_post_path %>
+  <!-- Full Screen search bar begin -->
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="#search"><h4><span class="glyphicon glyphicon-search"></span> Search</h4></a></li>
+  </ul>
+
+  <div id="search">
+      <button type="button" class="close">×</button>
+      <form method="get" action="<%= posts_path %>">
+          <input type="search" name="search" value="<%= params[:search] %>" placeholder="Keyword(s)..." />
+          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      </form>
+  </div>
+  <!-- full screen search bar ends -->
+
+
+  <% if params[:search] && @service_posts.present? || @item_posts.present? || @volunteer_posts.present? %>
+      <p id="notice"><%= notice %></p>
+      <h1><span class="glyphicon glyphicon-shopping-cart"></span> All Posts</h1>
+      <%= link_to new_post_path  do%>
+        <button class="btn btn-default" id="newpost"><span class="glyphicon glyphicon-list-alt"></span> New Post</button>
+      <% end %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Value</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @item_posts.each do |post| %>
+          <tr>
+            <%= link_to post_path(post) do %>
+              <td><%= image_tag("mac.jpeg", height: "150px", alt: "macbook") %></td>
+            <% end %>
+            <td><%= post.title %></td>
+            <td><%= post.value %></td>
+            <td><%= link_to 'View Details', post %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+
+  <% else %>
+    Sorry, nothing found.
+  <% end %>
+
+</div>
+
+
+<!-- full screen search js begin -->
+<script type="text/javascript">
+$(function () {
+  console.log("hi vic");
+    $('a[href="#search"]').on('click', function(event) {
+        event.preventDefault();
+        $('#search').addClass('open');
+        $('#search > form > input[type="search"]').focus();
+    });
+
+    $('#search, #search button.close').on('click keyup', function(event) {
+        if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+            $(this).removeClass('open');
+        }
+    });
+});
+</script>
+ <!-- full screen search js ends -->

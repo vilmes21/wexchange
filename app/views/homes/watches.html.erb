@@ -1,0 +1,34 @@
+<style>
+.container {
+  padding-top: 50px;
+  width: 70%;
+}
+
+#bigbody {
+  background-image: url('/assets/bg12.jpg');
+  background-size: cover;
+}
+</style>
+
+<div class="container">
+
+  <% if @number_watched == 1 %>
+    <h2>You are watching this post: </h2>
+  <% else %>
+    <h2>You are watching these <%= @number_watched %> posts:</h2>
+  <% end %>
+
+  <% @watched_posts.each do |w| %>
+    <%= link_to post_path(w) do %>
+      <div class="well well-sm">
+        <%= w.title %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= link_to user_path(session[:user_id]) do %>
+    <div class="btn btn-default" style="float: right">
+      Back to Panel
+    </div>
+  <% end %>
+</div>

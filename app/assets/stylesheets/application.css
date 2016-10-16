@@ -11,5 +11,42 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require bootstrap_and_overrides
  *= require_self
  */
+
+#yielding {
+  padding-top: 50px;
+}
+
+#logo {
+  height: 55px;
+  margin-top: 0px;
+}
+
+#logo2 {
+  height: 75px;
+  margin-top: 0px;
+}
+
+.navbar {
+  height: 70px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: sans-serif;
+}
+
+#bigbody {
+  padding-bottom: 0;
+  padding-top: 20px;
+}
+
+.texts {
+  margin: 0px 80px auto 100px;
+  padding: 30px;
+}
+
+.sections {
+  background-color: rgba(116, 147, 134, 0.15);
+}

@@ -6,9 +6,143 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- for footer links begin -->
+    <link rel="stylesheet" href="/assets/footer.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!-- for footer links end -->
+
+    <!-- for font-awesome begin -->
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <!-- for font-awesome end -->
+
+    <!-- for carousel begin -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        width: 100%;
+        margin: 0;
+    }
+
+    #le_carousel {
+      height: 500px;
+      min-height: 370px;
+      overflow: hidden;
+    }
+
+    .carousel-caption {
+      margin-top: 200px;
+      margin-bottom: 300px;
+    }
+    </style>
+    <!-- for carousel end -->
   </head>
 
-  <body>
-    <%= yield %>
+  <body id="bigbody">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+            <a href="http://localhost:3000"><img alt="Brand" src="/assets/logo.png" id="logo"></a>
+        </div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <a class="navbar-brand">WELCOME | BIENVENUE, &nbsp; <%= session[:user_name] || "HOW ARE YOU?" %></a>
+
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href='<%= about_path %>'> <span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+            <li><%= link_to '<span class="glyphicon glyphicon-question-sign"></span> FAQ'.html_safe, faq_path %></li>
+            <li><%= link_to '<span class="glyphicon glyphicon-shopping-cart"></span> All Posts'.html_safe, posts_path %></li>
+
+            <% if user_signed_in? %>
+              <li><%= link_to '<span class="glyphicon glyphicon-cog"></span> User Panel'.html_safe, user_path(session[:user_id]) %></li>
+              <li><%= link_to '<span class="glyphicon glyphicon-log-out"></span> Logout'.html_safe, sessions_path, method: :delete %></li>
+            <%  else %>
+              <li><a href='<%= new_user_path %>' ><span class="glyphicon glyphicon-log-in"></span> Register </a></li>
+            <% end %>
+
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="yielding">
+      <%= yield %>
+    </div>
+
+<!-- for footer begin-->
+<footer class="footer-distributed">
+
+  <div class="footer-left">
+    <a href="http://localhost:3000"><img alt="Brand" src="/assets/logo.png" id="logo2"></a>
+    <%= link_to reset_confirm_path, method: :post, remote: true do %>
+        <h3><b>Wexchange</b></h3>
+    <% end %>
+
+    <p class="footer-links">
+      <a href="<%= root_path %>"><span class="glyphicon glyphicon-home"></span> Home</a>
+      |
+      <a href="<%= posts_path %>">Posts</a>
+      |
+      <a href="<%= about_path %>">About</a>
+      |
+      <a href="<%= faq_path %>">FAQ</a>
+    </p>
+
+
+    <p class="footer-company-name">Wexchange Innovation &copy; 2016</p>
+  </div>
+
+  <div class="footer-center">
+
+    <div>
+      <i class="fa fa-map-marker"></i>
+      <p><span>123 W Georgia Street</span> Vancouver, Canada</p>
+    </div>
+
+    <div>
+      <i class="fa fa-phone"></i>
+      <p>+1 (778) 708-6336</p>
+    </div>
+
+    <div>
+      <i class="fa fa-envelope"></i>
+      <p><a href="mailto:jerrywangvic@gmail.com">jerrywangvic@gmail.com</a></p>
+    </div>
+
+  </div>
+
+  <div class="footer-right">
+
+    <p class="footer-company-about">
+      <span>Why Wexchange App?</span>
+      To promote resource reuse, retaliate hording culture, and foster eco-consciousness!
+    </p>
+
+    <div class="footer-icons">
+
+      <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+      <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+      <a href="https://www.linkedin.com/in/vic-hl-wang"><i class="fa fa-linkedin"></i></a>
+      <a href="https://github.com/vilmes21"><i class="fa fa-github"></i></a>
+
+    </div>
+
+  </div>
+
+</footer>
+<!-- for footer end -->
   </body>
 </html>

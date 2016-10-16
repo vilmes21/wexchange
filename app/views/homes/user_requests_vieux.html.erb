@@ -1,0 +1,68 @@
+<style>
+#bigbody {
+  background-image: url('/assets/bg12.jpg');
+  background-repeat: repeat;
+}
+</style>
+
+<div class="container">
+  You've sent out the following <%= @number_sent %> requests to other users:
+
+  <h2>Requests Waiting to be Accepted</h2>
+  <% @pending_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>They Accepted these Requests of YOURS, congrats</h2>
+  <% @accepted_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Declined Requests</h2>
+  <% @declined_Lrequests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Cancelled Requests</h2>
+  <% @cancelled_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Completed Requests</h2>
+  <% @completed_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to user_path(session[:user_id]) do %>
+    <div class="btn btn-default" style="float: right">
+      Back to Panel
+    </div>
+  <% end %>
+
+</div>

@@ -1,49 +1,136 @@
-<p id="notice"><%= notice %></p>
+<style>
+#bigbody {
+  background-image: url('/assets/bg10.jpeg');
+  /*background-size: cover;*/
+  background-repeat: repeat;
+}
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  #user_actions {
+    float: right;
+    /*background-color: rgba(113, 171, 90, 0.39)*/
+  }
+</style>
 
-<p>
-  <strong>Description:</strong>
-  <%= @post.description %>
-</p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @post.category %>
-</p>
+  <div id="user_actions">
+    <% if user_signed_in? && @post.user == current_user && @post.available? %>
+      <%= link_to '<span class="glyphicon glyphicon-edit"></span> Edit Post'.html_safe, edit_post_path(@post) %> |
+      <%= link_to '<span class="glyphicon glyphicon-trash"></span> Delete Post'.html_safe, @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
 
-<p>
-  <strong>Value:</strong>
-  <%= @post.value %>
-</p>
+    <% if user_signed_in? && @post.user != current_user%>
+      <% if @post.watched_by?(current_user) %>
+        <%= link_to watch_path(@post.watch_of(current_user)), method: :delete, class: "btn btn-default" do %>
+        <span class="glyphicon glyphicon-eye-close"></span> Unwatch
+        <% end %>
+      <% else %>
+        <%= link_to post_watches_path(@post), class: "btn btn-success", method: :post do %>
+        <span class="glyphicon glyphicon-eye-open"></span> Watch
+        <% end %>
+      <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
+      <%= link_to watches_path, class: "btn btn-default" do %>
+      Your Watched Posts (<%= @number_watched %>)
+      <% end %>
+    <% end %>
+  </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @post.location %>
-</p>
+  <h2><strong> <%= @post.title %> </strong></h2>
 
-<p>
-  <strong>Exchanged post:</strong>
-  <%= @post.exchanged_post_id %>
-</p>
+  <div>
+    <span class="glyphicon glyphicon-eye-open"></span> (<%= @watcher_number %> watching)
+  </div>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @post.duration %>
-</p>
+  <div>
+    <%= image_tag("mac.jpeg", height: "350px", alt: "macbook") %>
+  </div>
 
-<p>
-  <strong>Time:</strong>
-  <%= @post.time %>
-</p>
+  <p>
+    <strong>Owner:</strong>
+    <%= @post.user.name %>
+  </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+  <div class="well"> <h5>Relevent Tags:</h5>
+    <% @post.tags.each do |p| %>
+      <%= p.name %> |
+    <% end %>
+  </div>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @post.description %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @post.category %>
+  </p>
+
+  <p>
+    <strong>Value:</strong>
+    <%= @post.value %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @post.location %>
+  </p>
+
+  <% if @post.category == "Volunteer" %>
+  <p>
+    <strong>Duration (hrs):</strong>
+    <%= @post.duration %>
+  </p>
+
+  <p>
+    <strong><span class="glyphicon glyphicon-time"></span> Time:</strong>
+    <%= @post.time %>
+  </p>
+  <% end %>
+
+  <div>
+    <% if user_signed_in? && @post.liked_by?(current_user) %>
+      <%= link_to like_path(@post.like_of(current_user)), method: :delete  do %>
+        <span class="glyphicon glyphicon-thumbs-down"></span> Unlike
+      <% end %>
+    <% else %>
+      <%= link_to post_likes_path(@post), method: :post do %>
+        <span class="glyphicon glyphicon-heart"></span> Like
+      <% end %>
+    <% end %>
+
+    <% if @likes_number == 1 %>
+      (1 like)
+    <% else %>
+      (<%= @likes_number %> likes)
+    <% end %>
+  </div>
+
+  <% if user_signed_in? && @post.user != @current_user%>
+    <h2>Like it? Request an Exchange!</h2>
+    <%= simple_form_for([@post, @request]) do |f| %>
+      <% if @request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@request.errors.count, "error") %> prohibited this exchange request from being saved:</h2>
+
+          <ul>
+          <% @request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+        <%= f.input :title %>
+        <b>Offer one of your items in exchange:</b>
+        <%= f.select :offer_id, @bigarray, label: "feixue" %>
+        <%= f.input :message %>
+        <%= f.button :submit, value: "Send Request!", class: "btn btn-primary"%>
+    <% end %>
+
+    <%= link_to "See all requests made to this post <span class='glyphicon glyphicon-arrow-right'></span>".html_safe, post_requests_path(@post) %>
+  <% end %>
+
+</div>

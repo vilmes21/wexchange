@@ -1,47 +1,28 @@
-<%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
+<%= simple_form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone %>
-    <%= f.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_digest %>
-    <%= f.text_field :password_digest %>
-  </div>
-
-  <div class="field">
-    <%= f.label :points %>
-    <%= f.text_field :points %>
-  </div>
-
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :phone, label: "Phone Number" %>
+    <%= f.input :password, label: "Set Password" %>
+    <%= f.input :password_confirmation, label: "Confirm Password" %>
+    <% f.input :points, label: "Points. VIC: should be hidden" %>
+    <%= f.input :location, label: "Address" %>
+    <div class="form-group">
+      <b>What types of items would you like to acquire?</b>
+      <%= f.collection_select(:desired_tag_ids, Tag.all, :id, :name,
+      {},
+      { multiple: true, class: 'form-control' }) %>
+    </div>
+    <%= f.button :submit, value: "Join Club!", class: "btn btn-primary"%>
 <% end %>
