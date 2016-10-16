@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   def index
     @request = Request.find params[:request_id]
+    @item1 = Post.find(@request.post_id)
+    @item2 = Post.find(@request.offer_id)
     @message = Message.new
     @messages = @request.messages
   end

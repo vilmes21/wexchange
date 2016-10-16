@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
     # @request.status = "Pending"
     @request.post = Post.find params[:post_id]
       if @request.save
-        redirect_to post_path(@request.post), notice: 'Request Successful!'
+        redirect_to user_path(current_user), notice: 'Request Successful!'
       else
         redirect_to post_path(@request.post), alert: 'Request failure'
       end

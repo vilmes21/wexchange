@@ -1,16 +1,54 @@
-in messages' index.html.erb, controlled by messages#index
-All communications about request number: <%= params[:request_id] %> <br>
+<style>
+#chating {
+  background-color: rgba(215, 146, 116, 0.91);
+  padding: 15px;
+}
 
-Conversations: <hr>
-<% @messages.each do |m| %>
-  <%= m.user.name %>: <%= m.body %> <br>
-<% end %>
+#backbtn {
+  float: right;
+}
 
-<hr>
-<%= simple_form_for @message do |f| %>
-  <%= f.input :request_id, as: :hidden, input_html: { value: params[:request_id] } %>
-  <%= f.input :body, label: false, placeholder: "Send a message here..." %>
-  <%= f.input :user_id, as: :hidden, input_html: { value: session[:user_id] }  %>
-  <%= f.input :to_user, as: :hidden, input_html: { value: @request.user_id } %>
-  <%= f.submit "Send" %>
-<% end %>
+.jumbotron {
+  text-align: center;
+}
+
+#bigbody {
+  background-image: url('/assets/bg9.jpeg');
+  background-size: cover;
+}
+</style>
+
+<div class="container">
+<div class="jumbotron">
+  <h2><span class="glyphicon glyphicon-comment"></span> Communication Board</h2>
+    Exchanging Item: <%= link_to post_path(@item1) do %>
+                        <button class="btn btn-default"><%= @item1.title %></button>
+                      <% end %> <br>
+    Offering Item: <%= link_to post_path(@item2) do %>
+                      <button class="btn btn-default"><%= @item2.title %></button>
+                    <% end %>
+</div>
+  <hr>
+<div id="chating">
+  <% @messages.each do |m| %>
+    <div id="messages">
+      <%= m.user.name %>: <%= m.body %> <br>
+    </div>
+  <% end %>
+</div>
+  <hr>
+  <%= simple_form_for @message do |f| %>
+    <%= f.input :request_id, as: :hidden, input_html: { value: params[:request_id] } %>
+    <%= f.input :body, label: false, placeholder: "Send a message here..." %>
+    <%= f.input :user_id, as: :hidden, input_html: { value: session[:user_id] }  %>
+    <%= f.input :to_user, as: :hidden, input_html: { value: @request.user_id } %>
+    <%= f.submit "Send", class: "btn btn-success" %>
+  <% end %>
+
+  <%= link_to received_requests_path do %>
+    <div class="btn btn-default" id="backbtn">
+      Back to Request Box
+    </div>
+  <% end %>
+
+</div>

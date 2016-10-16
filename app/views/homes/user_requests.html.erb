@@ -1,58 +1,142 @@
-we're in homes/user_requests.html.erb controlled by homes#user_requests
+<!-- style for accordian begin -->
+<style>
+.container {
+  padding-top: 50px;
+  width: 70%;
+}
+
+#inboxtitle {
+  color: white;
+}
+
+#bigbody {
+  background-image: url('/assets/bg12.jpg');
+  /*background-repeat: repeat;*/
+  background-size: cover;
+}
+
+button.accordion {
+    background-color: rgba(48, 98, 74, 0);
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 330px;
+    /*height: 220px;
+    float: left;*/
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: rgba(48, 98, 74, 0.4);
+    /*background-color: #ddd;*/
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: rgba(209, 221, 109, 0.39);
+    max-height: 0;
+    overflow: scroll;
+    transition: 0.6s ease-in-out;
+    opacity: 0;
+}
+
+.well {
+  background-color: rgba(209, 221, 109, 0.5);
+  text-align: center;
+}
+
+div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
+
+</style>
+<!-- style for accordian end -->
+
+<div class="container">
+  <h2 id="inboxtitle"><span class="glyphicon glyphicon-envelope"></span> Your Sent Out Requests</h2>
+
+<button class="accordion"> <span class="glyphicon glyphicon-bell"></span> Requests Waiting for Approval (<%= @pending_requests.count %>)</button>
+<div class="panel">
+  <% @pending_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<button class="accordion"> <span class="glyphicon glyphicon-ok-circle"></span> They Accepted these Requests (<%= @accepted_requests.count %>)</button>
+<div class="panel">
+  <% @accepted_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+      <%= link_to messages_path(request_id: r.to_param) do %>
+        <button>Communication Board</button>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<button class="accordion"> <span class="glyphicon glyphicon-remove-circle"></span>  They Declined Requests (<%= @declined_requests.count %>)</button>
+<div id="foo" class="panel">
+  <% @declined_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<button class="accordion"> <span class="glyphicon glyphicon-ban-circle"></span> Your Cancelled Requests (<%= @cancelled_requests.count %>)</button>
+<div class="panel">
+  <% @cancelled_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<button class="accordion"> <span class="glyphicon glyphicon-flag"></span> Completed Requests (<%= @completed_requests.count %>)</button>
+<div class="panel">
+  <% @completed_requests.each do |r| %>
+    <div class="well well-sm">
+      <%= link_to request_path(r) do %>
+      <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to user_path(session[:user_id]) do %>
-  <button>Back</button>
-<% end %>
-
-You've sent out the following <%= @number_sent %> requests to other users:
-
-<h2>Requests Waiting to be Accepted</h2>
-<% @pending_requests.each do |r| %>
-  <div class="well well-sm">
-    <%= link_to request_path(r) do %>
-    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
-    <% end %>
-    <%= link_to messages_path(request_id: r.to_param) do %>
-      <button>Communication Board</button>
-    <% end %>
+  <div class="btn btn-default" style="float: right">
+    Back to Panel
   </div>
 <% end %>
 
-<h2>They Accepted these Requests of YOURS, congrats</h2>
-<% @accepted_requests.each do |r| %>
-  <div class="well well-sm">
-    <%= link_to request_path(r) do %>
-    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
-    <% end %>
-    <%= link_to messages_path(request_id: r.to_param) do %>
-      <button>Communication Board</button>
-    <% end %>
-  </div>
-<% end %>
+</div>
 
-<h2>Declined Requests</h2>
-<% @declined_requests.each do |r| %>
-  <div class="well well-sm">
-    <%= link_to request_path(r) do %>
-    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
-    <% end %>
-  </div>
-<% end %>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
 
-<h2>Cancelled Requests</h2>
-<% @cancelled_requests.each do |r| %>
-  <div class="well well-sm">
-    <%= link_to request_path(r) do %>
-    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
-    <% end %>
-  </div>
-<% end %>
-
-<h2>Completed Requests</h2>
-<% @completed_requests.each do |r| %>
-  <div class="well well-sm">
-    <%= link_to request_path(r) do %>
-    <%= r.title %> | from user <%= r.user.name %> | state of YOUR request: <%= r.state %> <br> offering item <%= r.offer_id %>
-    <% end %>
-  </div>
-<% end %>
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function(){
+    this.classList.toggle("active");
+    this.nextElementSibling.classList.toggle("show");
+  }
+}
+</script>
