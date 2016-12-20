@@ -8,10 +8,6 @@ class RequestsController < ApplicationController
   def show
   end
 
-  # def new
-  #   @request = Request.new
-  # end
-
   def create
     @request = Request.new(request_params)
     @request.user = current_user
@@ -37,5 +33,4 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:title, :message, :offer_id)
     end
-
 end
