@@ -1,0 +1,14 @@
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$leftWidth: 50%;
+$rightWidth: 100% - 50%;
+
+.left-text{
+  width: $leftWidth;
+}
+
+.right-img{
+  width: 100px;
+  // float: right;
+}
