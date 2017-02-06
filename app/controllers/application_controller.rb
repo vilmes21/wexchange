@@ -17,13 +17,11 @@ class ApplicationController < ActionController::Base
   helper_method :authenticate_user!
 
   def suggestions
-    @suggestions = Tagging.where(tag_id: current_user.desired_tag_ids).pluck(:post_id).uniq.map {|id| Post.find(id)}
-    # current_user.desired_tags.each do |t|
-    #   Post.find_each do |p|
-    #     @suggestions << p if p.tags.include? t
-    #   end
-    # end
-    # @suggestions.uniq
+    wishes = current_user.desired_tag_ids
+    # Collect an array of post_ids
+    post_ids = Tagging.where(tag_id: wishes).pluck(:post_id).uniq
+    # Fetch these posts by passing the array of ids.
+    @suggestions = Post.where(id: post_ids)
   end
   helper_method :suggestions
 

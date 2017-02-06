@@ -120,7 +120,9 @@ div.panel.show {
   <p>
     <strong>Looking for:</strong><br>
     <% @user.desired_tags.each do |t| %>
-      <%= t.name %> |
+      <span class="badge">
+        <%= t.name %>
+      </span>
     <% end %>
   </p>
 <hr>
