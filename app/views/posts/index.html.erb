@@ -35,13 +35,14 @@ table {
   </div>
   <!-- full screen search bar ends -->
 
+  <%= link_to new_post_path  do%>
+    <button class="btn btn-default" id="newpost"><span class="glyphicon glyphicon-list-alt"></span> New Post</button>
+  <% end %>
 
   <% if params[:search] && @service_posts.present? || @item_posts.present? || @volunteer_posts.present? %>
       <p id="notice"><%= notice %></p>
       <h1><span class="glyphicon glyphicon-shopping-cart"></span> All Posts</h1>
-      <%= link_to new_post_path  do%>
-        <button class="btn btn-default" id="newpost"><span class="glyphicon glyphicon-list-alt"></span> New Post</button>
-      <% end %>
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -77,7 +78,6 @@ table {
 <!-- full screen search js begin -->
 <script type="text/javascript">
 $(function () {
-  console.log("hi vic");
     $('a[href="#search"]').on('click', function(event) {
         event.preventDefault();
         $('#search').addClass('open');
