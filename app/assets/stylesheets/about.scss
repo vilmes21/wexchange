@@ -3,12 +3,33 @@
 
 $leftWidth: 50%;
 $rightWidth: 100% - 50%;
+$generalPadding: 4em;
+
+.why-cool{
+  margin-top: 30px;
+  padding: $generalPadding;
+}
+
+h1{
+  margin-bottom: 2em;
+  text-align: center;
+}
 
 .left-text{
   width: $leftWidth;
+  font-size: 1.7em;
+  padding-right: 5em;
+  // border-right: 2px grey solid;
 }
 
 .right-img{
-  width: 100px;
-  // float: right;
+  // width: 100px;
+  // height: 50px;
+  // padding: 4em;
+  height: 400px;
+  background-size: cover;
+}
+
+.about-page{
+  background-size: cover;
 }

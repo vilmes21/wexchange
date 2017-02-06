@@ -10,32 +10,36 @@
 
   <div class="carousel-inner" role="listbox" id="le_carousel">
 
-    <div class="item active">
-      <img src="/assets/jmt4.jpg" alt="Chania" width=100%>
+    <div class="item active" style="background-image: url(<%= image_path("jmt4.jpg") %>);">
+      I am supposed to be a sliding div
+      <!-- <img src="/assets/jmt4.jpg" alt="Chania" width=100%> -->
       <div class="carousel-caption">
         <h3>Reduce</h3>
         <p>Our beautiful planet needs less garbage.</p>
       </div>
     </div>
 
-    <div class="item">
-      <img src="/assets/jmt2.jpg" alt="Chania" width=100%>
+    <div class="item" style="background-image: url(<%= image_path("jmt2.jpg") %>);">
+      I am supposed to be a sliding div
+      <!-- <img src="/assets/jmt2.jpg" alt="Chania" width=100%> -->
       <div class="carousel-caption">
         <h3>Reuse</h3>
-        <p>We contribute to a greener world by reusing already-made items.</p>
+        <p>Contribute to a greener world.</p>
       </div>
     </div>
 
-    <div class="item">
-      <img src="/assets/jmt3.jpg" alt="Flower" height="370" width=100%>
+    <div class="item" style="background-image: url(<%= image_path("jmt3.jpg") %>);">
+      I am supposed to be a sliding div
+      <!-- <img src="/assets/jmt3.jpg" alt="Flower" height="370" width=100%> -->
       <div class="carousel-caption">
         <h3>Recycle</h3>
-        <p>A best way to recycle is to reuse things rather than buying new ones.</p>
+        <p>Reuse things rather than buying new ones.</p>
       </div>
     </div>
 
-    <div class="item">
-      <img src="/assets/jmt1.jpg" alt="Flower" width=100%>
+    <div class="item" style="background-image: url(<%= image_path("jmt1.jpg") %>);">
+      I am supposed to be a sliding div
+      <!-- <img src="/assets/jmt1.jpg" alt="Flower" width=100%> -->
       <div class="carousel-caption">
         <h3>Contribute</h3>
         <p>A simple choice makes big differences.</p>
@@ -45,13 +49,25 @@
 </div>
 <!-- for carousel end -->
 
-<div class="jumbotron">
-  <div class="container">
-    <h3>How does Wexchange Work?</h3>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+<div class="section centered">
+  <h2>How does Wexchange Work?</h2>
+  <div class="row">
+    <div class="col-sm-8 how-work">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+
+    <div class="col-sm-4">
+      <i class="fa fa-globe fa-5x" aria-hidden="true"></i> <br>
+      Earth-friendly App <br>
+      <i class="fa fa-heart fa-5x" aria-hidden="true"></i>
+    </div>
   </div>
 </div>
-<!-- ending .jumbotron -->
+<!-- ending .section -->
+
+<div class="centered imagine" style="background-image: url(<%= image_path("earth.jpg") %>);">
+  <h3>Imagine a World Without Waste...</h3>
+</div>
 
 <div class="img-collect">
   <div class="row">
@@ -112,3 +128,18 @@
 
 </div>
 <!-- ending .img-collect -->
+
+<div class="testimonial">
+  <h2>Live Greener, Live Happier.</h2>
+  <%= link_to new_user_path do %>
+    <button type="button" name="button" class="btn btn-success">
+      Sign Up Today!
+    </button>
+  <% end %>
+  <div class="praise">
+    <q cite="John Doe"><i>As soon as I signed up, I felt happier. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</i></q>
+  </div>
+  <div class="">
+    --John Doe
+  </div>
+</div>

@@ -54,7 +54,9 @@
 
   <div class="well"> <h5>Relevent Tags:</h5>
     <% @post.tags.each do |p| %>
-      <%= p.name %> |
+      <span class="badge">
+        <%= p.name %>
+      </span>
     <% end %>
   </div>
 
@@ -123,11 +125,13 @@
         </div>
       <% end %>
 
-        <%= f.input :title %>
+        <%= f.input :title, placeholder: "*Message Title", label: false %>
         <b>Offer one of your items in exchange:</b>
-        <%= f.select :offer_id, @bigarray, label: "feixue" %>
-        <%= f.input :message %>
-        <%= f.button :submit, value: "Send Request!", class: "btn btn-primary"%>
+        <%= f.select :offer_id, @bigarray %>
+        <br>
+        <br>
+        <%= f.input :message, placeholder: "Write a message..", label: false %>
+        <%= f.button :submit, value: "Send Request", class: "btn btn-primary"%>
     <% end %>
 
     <%= link_to "See all requests made to this post <span class='glyphicon glyphicon-arrow-right'></span>".html_safe, post_requests_path(@post) %>

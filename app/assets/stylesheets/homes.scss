@@ -2,16 +2,122 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$imgHeight: 13em;
+$imgHeight: 20em;
 $img-border: 66px black solid;
+$generalPadding: 7em;
 
 .col-xs-3{
-  background: pink;
+  // background: pink;
+  background-position: center;
   background-size: cover;
   height: $imgHeight;
 }
 
 .img-collect{
   border-top: $img-border;
-  border-bottom: $img-border;
+  // ttom: $img-border;
 }
+
+.footer-distributed{
+  margin-top: 0;
+}
+
+.section{
+  padding: $generalPadding;
+  // padding-left: 80px;
+  // padding-right: 80px;
+  // margin-bottom: 0;
+
+  h2{
+    font-size: 2.5em;
+    margin-bottom: 1.2em;
+  }
+
+  .how-work{
+    border-right: 2px grey solid;
+    font-size: 1.4em;
+  }
+
+  .fa-heart{
+    color: red;
+  }
+
+  .fa-globe{
+    color: #0CA2D4;
+  }
+}
+
+.imagine{
+  color: white;
+  padding: $generalPadding + 5;
+  background-position: center;
+
+  h3{
+    // margin-top:
+    text-shadow: 1px 1px 1px #000;
+  }
+}
+
+.testimonial{
+  font-family: Helvetica Neue, Arial, sans-serif;
+  text-align: center;
+  padding: $generalPadding;
+
+  h2{
+    margin-bottom: 2em;
+  }
+
+  button{
+    // border: 2px grey solid;
+    padding: 30px 80px;
+    border-radius: 15px;
+    font-size: 1.5em;
+    // width: 5em;
+    // height: 3em;
+  }
+
+  .praise{
+    padding: 40px;
+    font-size: 1.2em;
+  }
+}
+
+
+// for carousel styling begin
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 100%;
+    margin: 0;
+
+}
+
+#le_carousel {
+  height: 500px;
+  min-height: 370px;
+  overflow: hidden;
+}
+
+.carousel-caption {
+  margin-top: 200px;
+  margin-bottom: 300px;
+
+  h3, p{
+    font-weight: 600;
+    font-size: 2em;
+    color: #D8A682;
+    shadow: none;
+  }
+
+  p{
+  }
+}
+
+.item{
+  height: 650px;
+  // background: blue;
+  padding-top: 500px;
+  background-size: cover;
+  background-position: bottom;
+}
+
+// for carousel styling end

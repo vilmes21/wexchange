@@ -55,3 +55,11 @@
 .sections {
   background-color: rgba(116, 147, 134, 0.15);
 }
+
+.centered{
+  text-align: center;
+}
+
+.jumbotron{
+  margin-bottom: 0;
+}
