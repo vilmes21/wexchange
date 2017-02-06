@@ -8,14 +8,9 @@ class RequestsController < ApplicationController
   def show
   end
 
-  # def new
-  #   @request = Request.new
-  # end
-
   def create
     @request = Request.new(request_params)
     @request.user = current_user
-    # @request.status = "Pending"
     @request.post = Post.find params[:post_id]
       if @request.save
         redirect_to user_path(current_user), notice: 'Request Successful!'
@@ -37,5 +32,4 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:title, :message, :offer_id)
     end
-
 end

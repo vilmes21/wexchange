@@ -13,7 +13,12 @@
  *= require_tree .
  *= require bootstrap_and_overrides
  *= require_self
+ *= require font-awesome
  */
+
+* {
+  font-family: Arial;
+}
 
 #yielding {
   padding-top: 50px;
@@ -49,4 +54,12 @@
 
 .sections {
   background-color: rgba(116, 147, 134, 0.15);
+}
+
+.centered{
+  text-align: center;
+}
+
+.jumbotron{
+  margin-bottom: 0;
 }
